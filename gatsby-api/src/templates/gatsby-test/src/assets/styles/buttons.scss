@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+/** BUTTONS */
+
+button {
+  cursor: pointer;
+  font-family: var(--button_font);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+form button {
+  font-size: inherit;
+}
+
+/** style is line underneath - slides over to reveal arrow when hovered */
+.btn_style-1 {
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  font-size: calc(20px + 0.3vw);
+  padding: 0 0 0.2em;
+  transition: 0.15s;
+
+  &:hover {
+    padding-right: 1.2em;
+
+    .arrow {
+      opacity: 1;
+      transition: 0.3s;
+    }
+
+  }
+
+  .arrow {
+    content: url('../images/icon_arrow-1.svg');
+    height: 0.85em;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0.25em;
+    transition: 0.1s;
+    transition-delay: 0.05s;
+    width: 0.85em;
+  }
+}
+
+/** wrapped button with arrows that rotates down on hover */
+.btn_style-2 {
+  font-size: calc(14px + 0.2vw);
+  letter-spacing: 0.1em;
+  padding: 0.4em 1.8em 0.4em 0.8em;
+
+  &:hover .arrow {
+    transform: rotate(90deg);
+  }
+
+  .arrow {
+    height: 0.85em;
+    position: absolute;
+    right: 0.5em;
+    top: 0.7em;
+    transition: 0.2s;
+    transition-delay: 0.1s;
+    width: 0.85em;
+
+    * {
+      stroke: var(--teal);
+    }
+  }
+}
+
+.rounded .btn_style-2 {
+  border-radius: 0.3em;
+}
+
+.half_rounded .btn_style-2 {
+  border-bottom-right-radius: 0.3em;
+}
+
+
+/** OPEN AND CLOSE BUTTONS - controls the defaults of these buttons in several instances (mobile menu, video, popups, notifications) */
+
+/** this gets "extended" to .open_button, .close_button, .video_close_button, .popup_close_button */
+.menu_button {
+  cursor: pointer;
+  display: none;
+  height: 3vw;
+  right: var(--menu_padding_horiz);
+  top: 4vw;
+  width: 3vw;
+  z-index: 7;
+
+
+  * {
+    stroke-width: 5px;
+  }
+}
+
+
+.open_button {
+  @extend .menu_button;
+  position: fixed;
+
+  * {
+    stroke: var(--white);
+  }
+
+  &.open * {
+    stroke: var(--blue);
+  }
+
+  &.open {
+    display: none;
+  }
+
+  &.hide {
+    display: none !important;
+  }
+}
+
+.close_button {
+  @extend .menu_button;
+  position: fixed;
+
+  * {
+    stroke: var(--blue);
+  }
+
+  &.open {
+    display: block;
+  }
+
+}
+/** pseudo-elements ::before and ::after cannot be added to INPUT[type="submit"] */
+/** if you want to add loading spinner for INPUT[type="submit"] wrap it in div with class "button" */
+button,
+.button {
+  &.is-loading {
+    &::before {
+      animation: button-loading-spinner 1s linear infinite;
+      border: 4px solid transparent;
+      border-radius: 50%;
+      border-top-color: var(--white);
+      bottom: 0;
+      content: '';
+      height: 16px;
+      left: 0;
+      margin: auto;
+      margin-left: -40px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 16px;
+    }
+  }
+}
+
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /** this gets "extended" to .open_button, .close_button, .video_close_button, .popup_close_button */
+  .menu_button {
+    right: var(--standard_padding_horiz);
+    top: 5vw;
+    width: 9vw;
+  }
+}

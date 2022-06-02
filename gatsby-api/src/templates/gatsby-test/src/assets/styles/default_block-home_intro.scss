@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+/** HOME INTRO - DEFAULT BLOCK */
+
+.intro_home_block {
+  background: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: calc(16px + 0.9vw);
+
+  h1 {
+    color: var(--blue);
+  }
+
+  &.single_col_layout {
+    justify-content: center;
+    padding: var(--standard_padding_vert) var(--large_padding_horiz);
+    text-align: center;
+
+    .intro_img_wrapper {
+      margin: 0 auto 1.7em;
+      width: 68%;
+    }
+
+  }
+
+  &.two_col_layout {
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: var(--standard_padding_vert) 9vw;
+    text-align: left;
+
+    .intro_img_wrapper {
+      width: 38%;
+    }
+
+    .written_content {
+      width: 55%;
+    }
+
+    .signature_wrap {
+      margin: 0;
+    }
+
+  }
+
+  .video_preview {
+    margin-bottom: calc(20px + 2vw);
+    width: 70%;
+  }
+
+}
+
+.signature_wrap {
+  margin: auto;
+  width: calc(200px + 14vw);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::after {
+    background: var(--blue);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  img {
+    display: block;
+    margin: auto;
+    max-height: 5vw;
+    max-width: 100%;
+  }
+}
+
+.home_intro_text {
+  margin-bottom: 1em;
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+  .intro_home_block {
+    font-size: calc(16px + 0.3vw);
+  }
+
+  .signature_wrap {
+    width: calc(200px + 6.9vw);
+  }
+
+}
+
+
+@media only screen and (max-width: 767px) {
+  .intro_home_block {
+    padding-left: var(--standard_padding_horiz) !important;
+    padding-right: var(--standard_padding_horiz) !important;
+
+    h1 {
+      text-align: center;
+    }
+
+    .signature_wrap {
+      margin-left: auto !important;
+      margin-right: auto !important;
+
+      img {
+        margin: auto;
+        max-height: 13vw;
+        max-width: 100%;
+      }
+
+    }
+
+    .intro_img_wrapper {
+      margin-bottom: 9vw;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80% !important;
+    }
+
+    .written_content {
+      margin: auto;
+      width: 100% !important;
+    }
+
+    .video_preview {
+      width: 100%;
+    }
+  }
+
+
+  .section_gradient_overlay {
+    height: 20vw;
+  }
+
+}

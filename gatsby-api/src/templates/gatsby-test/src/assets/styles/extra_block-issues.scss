@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+/** ISSUES - extra BLOCK */
+
+.issues_block {
+  background: var(--blue);
+  padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+
+  button {
+    border-bottom-color: var(--teal);
+    color: var(--yellow);
+    display: block;
+    margin-left: auto;
+    margin-top: 2em;
+
+    &:hover {
+      color: var(--white);
+    }
+
+    svg * {
+      stroke: var(--yellow);
+    }
+
+  }
+
+}
+
+
+.issues_item-extra {
+  align-items: flex-start;
+  border-color: var(--teal);
+  color: var(--white);
+  display: flex;
+  padding-bottom: 1.5vw;
+  padding-top: 2.5vw;
+
+  h2 {
+    color: var(--yellow);
+  }
+
+  .text_section {
+    border-color: var(--teal);
+    width: 80%;
+  }
+
+  .checkmark_icon {
+    margin-right: 5%;
+    width: 15%;
+
+    path {
+      fill: var(--teal);
+    }
+
+    polygon {
+      fill: var(--white);
+    }
+  }
+
+  &:nth-child(odd) {
+    border-right-width: 1px;
+    padding-right: 10%;
+  }
+
+  &:nth-child(even) {
+    padding-left: 10%;
+  }
+
+  &:last-of-type:nth-child(odd) { /** Hides last odd numbered issue */
+    display: none;
+  }
+
+}
+
+
+.issues_wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+
+
+.issues_divider {
+  border-bottom: 1px var(--teal) solid;
+  height: 1px;
+  margin-bottom: 1.5vw;
+  margin-top: 1.5vw;
+  width: 95%;
+
+  &:nth-child(odd) {
+    justify-self: start;
+  }
+
+  &:nth-child(even) {
+    justify-self: end;
+  }
+
+  &:nth-child(1),
+  &:nth-child(2) {
+    display: none;
+  }
+
+}
+
+/** Alternate palette - Add alt_palette class to section block to invoke it */
+
+.issues_block.alt_palette {
+  background: var(--teal);
+
+  button {
+    border-bottom-color: var(--blue);
+    color: var(--yellow);
+
+    &:hover {
+      color: var(--white);
+    }
+  }
+
+  .issues_item-extra {
+    border-color: var(--white);
+    color: var(--white);
+
+    h2 {
+      color: var(--blue);
+    }
+
+    .checkmark_icon {
+      path {
+        fill: var(--white);
+      }
+
+      polygon {
+        fill: var(--yellow);
+      }
+    }
+  }
+
+  .issues_divider {
+    border-bottom-color: var(--white);
+  }
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .issues_item-extra {
+    &:nth-child(2n+1)::after {
+      height: calc(100% - 5vw);
+    }
+  }
+
+}
+
+
+@media only screen and (max-width: 767px) {
+  .issues_wrapper {
+    display: block;
+  }
+
+  .issues_divider {
+    display: none;
+  }
+
+  .issues_item-extra {
+    border-right: 0;
+    margin-bottom: 30px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    width: 100%;
+
+    .text_section {
+      border-bottom-width: 1px;
+      padding-bottom: 20px;
+    }
+
+    &:last-child {
+      margin-bottom: 0 !important;
+
+      .text_section {
+        border: 0;
+        padding-bottom: 0 !important;
+      }
+    }
+  }
+
+}

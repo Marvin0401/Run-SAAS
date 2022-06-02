@@ -1,0 +1,339 @@
+@charset "UTF-8";
+
+
+.long_form_block {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+
+  /** option */
+  &.column_background {
+    form.column {
+      padding: var(--small_padding);
+      width: 52%;
+    }
+
+  }
+
+  .first_column {
+    flex-grow: 1;
+    padding-right: 8%;
+    width: 25%;
+  }
+
+  form.column {
+    width: 46%;
+  }
+
+  .column {
+    z-index: 3;
+  }
+
+  button {
+    display: block;
+    margin-left: auto;
+    margin-top: 1em;
+
+  }
+}
+
+/** color options */
+
+.long_form_block {
+  &.white_block,
+  &.alt_palette {
+    background: var(--white);
+
+    color: var(--blue);
+
+    .gradient_overlay {
+      display: block;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+    }
+
+    .long_form_description b {
+      color: var(--teal);
+    }
+
+    h1 {
+      color: var(--blue);
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='number'],
+    select,
+    textarea {
+      background: var(--blue);
+      color: var(--yellow);
+
+      &::placeholder {
+        color: var(--yellow);
+      }
+
+      &:focus {
+        background: var(--teal);
+        color: var(--white);
+      }
+    }
+
+    .checkbox_wrapper {
+      .svg {
+        * {
+          fill: var(--blue);/** box */
+        }
+      }
+
+      input[type='checkbox'] {
+        &:checked ~ .svg polygon {
+          fill: var(--yellow);
+        }/**  checkmark color */
+      }
+
+    }
+
+    .radio_wrapper {
+      .outer_circle {
+        fill: var(--blue);
+      }
+    }
+
+    button {
+      border-bottom-color: var(--teal);
+      color: var(--blue);
+
+      svg * {
+        stroke: var(--teal);
+      }
+    }
+
+    &.column_background {
+      form.column {
+        background: var(--blue);
+        color: var(--white);
+      }
+
+      input[type='text'],
+      input[type='email'],
+      input[type='number'],
+      select,
+      textarea {
+        background: var(--teal);
+        color: var(--white);
+
+        &::placeholder {
+          color: var(--white);
+        }
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      .checkbox_wrapper {
+        .svg {
+          * {
+            fill: var(--yellow);/** box */
+          }
+        }
+
+        input[type='checkbox'] {
+          &:checked ~ .svg polygon {
+            fill: var(--blue);
+          }/**  checkmark color */
+        }
+
+      }
+
+      .radio_wrapper {
+        .outer_circle {
+          fill: var(--yellow);
+        }
+
+        input[type='radio']:checked ~ .svg .inner_circle {
+          fill: var(--blue);
+        }
+
+      }
+
+      .second_column button {
+        border-bottom-color: var(--teal);
+        color: var(--white);
+
+        svg * {
+          stroke: var(--teal);
+        }
+
+      }
+
+    }/** white_block sets options other than color that are specific to white or very light colored blocks. alt palette for if it's in the extra block area and needs it */
+
+  }
+
+
+  &.color_block {
+
+    background: var(--yellow);
+    color: var(--blue);
+
+    .section_gradient_overlay {
+      display: none;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+    }
+
+    .long_form_description b {
+      color: var(--blue);
+    }
+
+    h1 {
+      color: var(--blue);
+    }
+
+    input[type='text'],
+    input[type='number'],
+    input[type='email'],
+    select,
+    textarea {
+      background: var(--blue);
+      color: var(--white);
+      &::placeholder {
+        color: var(--white);
+      }
+
+      &:focus {
+        background: var(--white);
+        color: var(--blue);
+      }
+    }
+
+    .checkbox_wrapper {
+      .svg {
+        * {
+          fill: var(--blue);/** box */
+        }
+      }
+
+      input[type='checkbox'] {
+        &:checked ~ .svg polygon {
+          fill: var(--white);
+        }/** checkmark color */
+      }
+
+    }
+
+    .radio_wrapper {
+      .outer_circle {
+        fill: var(--blue);
+      }
+    }
+
+    .second_column button {
+      border-bottom-color: var(--teal);
+      color: var(--blue);
+
+      svg * {
+        stroke: var(--teal);
+      }
+    }
+
+    &.column_background {
+      form.column {
+        background: var(--blue);
+        color: var(--white);
+      }
+
+      input[type='text'],
+      input[type='email'],
+      input[type='number'],
+      select,
+      textarea {
+        background: var(--teal);
+        color: var(--white);
+
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      .checkbox_wrapper {
+        .svg {
+          * {
+            fill: var(--yellow);/** box */
+          }
+        }
+
+        input[type='checkbox'] {
+          &:checked ~ .svg polygon {
+            fill: var(--blue);
+          }/** checkmark color */
+        }
+
+      }
+
+      .radio_wrapper {
+        .outer_circle {
+          fill: var(--yellow);
+        }
+
+        .inner_circle {
+          fill: var(--blue);
+        }
+      }
+
+      .second_column button {
+        border-bottom-color: var(--teal);
+        color: var(--white);
+
+        svg * {
+          stroke: var(--teal);
+        }
+
+      }
+
+    }/** white_block sets options other than color that are specific to white or very light colored blocks. */
+
+  }
+
+
+
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .long_form_block {
+    h1 {
+      text-align: center;
+    }
+
+    .first_column {
+      margin-bottom: 1.5em;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='number'],
+    select,
+    textarea {
+      background: var(--teal);
+      color: var(--white);
+
+      &:focus {
+        background: var(--yellow);
+        color: var(--blue);
+      }
+    }
+
+  }
+
+}
+
+

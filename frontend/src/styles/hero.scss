@@ -1,0 +1,1452 @@
+@charset "UTF-8";
+
+@import 'scss';
+
+/** HERO AREA */
+@mixin hero_mixin ($isMobile) {
+
+  .hero {
+    height: 100vh; /** normalize to fill screen size */
+    max-height: previewConverter(65, $isMobile); /** unless it's too tall/vertical */
+    min-height: previewConverter(50, $isMobile); /** or too short/horizontal */
+
+    .gradient_overlay {
+      height: previewConverter(12, $isMobile);
+      z-index: 11;
+    }
+
+    .video_preview,
+    .preview_image {
+      display: none;
+    }
+
+    /** image settings */
+    &.floating_image .header_content_full,
+    &.video_image .header_content_full {
+      .hero_image_wrapper {
+        // background-image: url('../assets/images/sample_image-3.jpg');
+        background-size: cover;
+        height: previewConverter(30, $isMobile);
+        top: 50%;
+        transform: translateY(-50%);
+        width: previewConverter(55, $isMobile);
+        z-index: 2;
+      }
+
+      .header_full_wrapper {
+        width: 35%;
+
+        h2 {
+          font-size: previewConverter(3.15, $isMobile); /** corresponds to exact percent that box shrinks by */
+        }
+      }
+    }
+
+    &.video_image {
+      .video_preview {
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    /** form options */
+    &.bar_form .header_signup-bar {
+      display: flex;
+    }
+
+    &.grid_form .header_signup-grid {
+      display: block;
+    }
+
+    /** headline vs. logo options - defaults to big logo */
+    &.headline_on {
+      .header_content {
+        h2 {
+          display: block;
+        }
+      }
+
+      .big_logo {
+        display: none;
+      }
+
+      .small_logo {
+        display: inline;
+      }
+    }
+
+    &.page_name_on {
+      .header_content {
+        h1 {
+          display: block;
+        }
+      }
+    }
+
+    .header_content {
+      text-align: center;
+      z-index: 10;
+    }
+
+    .texting_disclaimer {
+      font-size: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      width: 82%;
+
+      .texting_disclaimer_text {
+        line-height: 1.4;
+        opacity: 0.6;
+      }
+
+      a {
+        line-height: inherit;
+        // text-decoration: underline;
+      }
+    }
+
+    /** social icon location option */
+    .nav_wrapper_right {
+      .social_icons {
+        display: flex;
+      }
+    }
+
+    &.social_icons_below {
+      .nav_wrapper_right {
+        .social_icons {
+          display: none;
+        }
+      }
+
+      .header_content_full {
+        .social_icons {
+          display: flex;
+        }
+      }
+    }
+
+    /** flip content */
+    &.flip_content .header_content_full {
+      .hero_image_wrapper {
+        background-position: top left;
+        left: 0;
+      }
+
+      .header_full_wrapper {
+        left: auto;
+        right: var(--menu_padding_horiz);
+      }
+
+      &::before {
+        left: auto;
+        right: 0;
+        transform: scaleX(-1);
+      }
+
+      .header_full_inner_wrapper::before {
+        transform: scaleX(-1);
+      }
+
+      .header_signup-bar {
+        left: auto;
+        padding-left: previewConverter(2, $isMobile);
+        padding-right: var(--menu_padding_horiz);
+        right: 0;
+      }
+
+    }
+
+    /** no image */
+    &.no_image {
+      .hero_image_wrapper {
+        display: none;
+      }
+
+      .header_full_wrapper {
+        margin: auto;
+        position: relative;
+        left: 0;
+      }
+
+      .header_content_phone .bottom_wrapper {
+        padding-top: 0;
+      }
+
+    }
+
+    /** full width image */
+    &.full_width_image .header_content_full {
+      .header_full_inner_wrapper::before {
+        display: flex;
+      }
+
+      .hero_image_wrapper {
+        // background-image: url('../assets/images/sample_image-2.jpg');
+        background-size: cover;
+      }
+
+      &::before {
+        display: none !important;
+      }
+    }
+  }
+
+  /** DESKTOP AND TABLET VERSION ONLY */
+  .header_content_full {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+
+    .hero_image_wrapper {
+      // background-image: url('../assets/images/header-background-home.jpg');
+      background-position: top right;
+      background-repeat: no-repeat;
+      background-size: auto #{previewConverter(65, $isMobile)}; /** lock to tallest header size, crops as header gets smaller */
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+
+    &::before { /** color overlay */
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+
+    /** cover options */
+    &.standard_box::before {
+      width: previewConverter(50, $isMobile);
+    }
+
+    &.angled_box::before {
+      clip-path: polygon(0 0, 84% 0, 100% 100%, 0% 100%);
+      width: previewConverter(56.5, $isMobile);
+    }
+
+    &.gradient_box::before {
+      width: previewConverter(60, $isMobile);
+    }
+  }
+
+  .header_full_wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: var(--menu_padding_horiz);
+    position: absolute;
+    top: 0;
+    width: 40%;
+
+    .social_icons {
+      display: none;
+      font-size: calc(14px + #{previewConverter(0.1, $isMobile)});
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: previewConverter(2, $isMobile);
+    }
+
+    h1 {
+      display: none; /** off by default */
+      margin-bottom: previewConverter(2, $isMobile);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h2 {
+      display: none; /** off by default */
+      font-size: previewConverter(3.6, $isMobile);
+      margin-bottom: previewConverter(2, $isMobile);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+
+  .header_full_inner_wrapper {
+    padding-bottom: previewConverter(4, $isMobile);
+    padding-top: previewConverter(4, $isMobile);
+
+    &::before {
+      content: '';
+      display: none;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .rounded .header_full_inner_wrapper::before {
+    border-bottom-right-radius: previewConverter(1, $isMobile);
+    border-top-right-radius: previewConverter(1, $isMobile);
+  }
+
+  .half_rounded .header_full_inner_wrapper::before {
+    border-bottom-right-radius: previewConverter(1, $isMobile);
+  }
+
+  /** PHONE VERSION ONLY */
+  .header_content_phone {
+    display: none;
+
+    .hero_image_wrapper {
+    // background-image: url('../assets/images/header-background-home.jpg');
+      background-size: cover;
+      height: previewConverter(100, $isMobile);
+    }
+
+    .top_wrapper {
+      padding: previewConverter(20, $isMobile) var(--standard_padding_horiz) previewConverter(15, $isMobile);
+      z-index: 1;
+    }
+
+    .bottom_wrapper {
+      padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+    }
+
+    .top_wrapper::before,
+    .bottom_wrapper::before {
+      content: '';
+      left: 0;
+      position: absolute;
+    }
+
+    &.gradient_box {
+      .hero_image_wrapper::after {
+        content: '';
+        height: previewConverter(20, $isMobile);
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: calc(#{previewConverter(100, $isMobile)} - var(--scrollbar_width)) !important;
+      }
+    }
+
+    &.angled_box {
+      .hero_image_wrapper::before {
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+        content: '';
+        height: previewConverter(10, $isMobile);
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: previewConverter(100, $isMobile) !important;
+        z-index: 3;
+      }
+
+      .hero_image_wrapper::after {
+        bottom: 0;
+        clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        content: '';
+        height: previewConverter(10, $isMobile);
+        left: 0;
+        position: absolute;
+        width: previewConverter(100, $isMobile) !important;
+      }
+
+    }
+
+
+  }
+
+
+
+
+
+
+  .header_signup-grid {
+    display: none;
+    margin-bottom: previewConverter(1.5, $isMobile);
+    margin-left: auto;
+    margin-right: auto;
+    width: 82%;
+
+    form {
+      column-gap: previewConverter(0.5, $isMobile);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: previewConverter(0.5, $isMobile);
+    }
+
+    input {
+      background: var(--white);
+      color: var(--light_grey);
+      font-size: previewConverter(1.5, $isMobile);
+      margin-bottom: 0;
+      width: 100%;
+      border-radius: 0.3em;
+
+      &:focus {
+        background: var(--teal);
+        color: var(--white);
+      }
+    }
+
+    input[type='submit'] {
+      background: var(--teal);
+      color: var(--white);
+
+      &:hover {
+        background: var(--yellow);
+        color: var(--blue);
+      }
+
+    }
+
+  }
+
+
+  .header_signup-bar {
+    background: #ffda31;
+    display: none;
+    left: calc(-1 * var(--menu_padding_horiz));
+    margin-bottom: previewConverter(1.5, $isMobile);
+    padding-left: var(--menu_padding_horiz);
+    padding-right: previewConverter(2, $isMobile);
+    width: calc(100% + var(--menu_padding_horiz));
+
+
+    form {
+      display: flex;
+      flex-wrap: nowrap;
+      margin-bottom: previewConverter(1, $isMobile);
+      margin-top: previewConverter(1, $isMobile);
+      padding-bottom: previewConverter(1, $isMobile);
+      padding-top: previewConverter(1, $isMobile);
+      width: auto;
+      width: 100%;
+
+      &::before {
+        border-bottom: 1px solid;
+        border-top: 1px solid;
+        content: '';
+        height: 100%;
+        left: 0;
+        opacity: 20%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    input {
+      font-size: previewConverter(1.1, $isMobile); /** controls input sizes overall */
+      margin-bottom: 0;
+    }
+
+    input[type='text'],
+    input[type='email'] {
+      background: var(--white);
+      color: var(--blue);
+      flex-grow: 1;
+      margin-right: previewConverter(0.7, $isMobile);
+      width: previewConverter(5, $isMobile);
+
+      &:focus {
+        background: var(--blue);
+        color: var(--white);
+      }
+    }
+
+    input[type='submit'] {
+      background: var(--blue);
+      color: var(--white);
+
+      &:hover {
+        background: var(--teal);
+      }
+
+    }
+  }
+
+
+
+  .rounded .header_signup {
+    border-bottom-right-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+
+    input {
+      border-radius: 0.3em;
+    }
+  }
+
+  .half_rounded .header_signup {
+    border-radius: 0.5em 0;
+
+    input {
+      border-radius: 0.5em 0;
+    }
+  }
+
+
+
+  /** logo */
+  .big_logo {
+    cursor: pointer;
+    display: block;
+    margin-bottom: previewConverter(3, $isMobile);
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 50%;
+    max-width: 50%;
+  }
+
+  .small_logo {
+    cursor: pointer;
+    display: none;
+    margin-right: 3em;
+    max-height: previewConverter(10, $isMobile);
+    max-width: previewConverter(10, $isMobile);
+  }
+
+  .phone_logo {
+    display: none;
+  }
+
+  /** INNER PAGE HEADER -- inner_page class must be added to BODY tag */
+
+  .inner_page .hero {
+
+    height: previewConverter(30, $isMobile);
+
+    .header_signup-bar,
+    .header_signup-grid {
+      display: none !important;
+    }
+
+    .big_logo {
+      display: none;
+    }
+
+    .small_logo {
+      display: inline;
+    }
+
+
+    h1 {
+      display: none;
+    }
+
+    h2 {
+      display: none;
+    }
+
+    .texting_disclaimer {
+      display: none;
+
+
+    }
+
+    .gradient_box::before {
+      width: previewConverter(60, $isMobile);
+    }
+
+    .angled_box::before {
+      width: previewConverter(57.5, $isMobile);
+    }
+
+    .standard_box::before {
+      width: previewConverter(50, $isMobile);
+    }
+
+  }
+}
+
+@include hero_mixin(false);
+
+@mixin mobile_mid_hero($isMobile) {
+  .header_signup {
+    padding-left: previewConverter(4, $isMobile);
+
+    input {
+      font-size: previewConverter(1.6, $isMobile);
+
+      &[type='text'],
+      &[type='email'] {
+        width: previewConverter(15, $isMobile);
+      }
+    }
+  }
+
+  .hero {
+    &.angled_box::before {
+      width: previewConverter(57, $isMobile);
+    }
+  }
+
+  .small_logo {
+    max-height: previewConverter(12, $isMobile);
+    max-width: previewConverter(12, $isMobile);
+  }
+}
+
+@mixin mobile_small_hero($isMobile) {
+  .header_content_phone {
+    display: block;
+  }
+
+  .header_content_full {
+    display: none;
+  }
+
+  .big_logo,
+  .small_logo {
+    display: none !important;
+  }
+
+  .phone_logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: previewConverter(30, $isMobile);
+    max-width: 50%;
+  }
+
+  .hero {
+    height: auto !important;
+    max-height: none;
+    min-height: none;
+
+    .texting_disclaimer {
+      width: auto;
+    }
+  }
+
+
+
+
+  /** form options */
+
+  .header_signup-grid {
+    display: block;
+    margin-bottom: previewConverter(3, $isMobile);
+    width: 100%;
+
+    form {
+      grid-template-columns: 1fr;
+      row-gap: previewConverter(1.3, $isMobile);
+    }
+
+    input {
+      font-size: previewConverter(4, $isMobile);
+    }
+  }
+
+  .header_signup-bar {
+    display: none !important;
+  }
+
+  /** inner page overrides */
+
+  .inner_page {
+    .bottom_wrapper {
+      display: none;
+    }
+
+    .big_logo {
+      display: block;
+    }
+
+    .header_full_wrapper {
+      h1 {
+        margin-bottom: 0;
+      }
+
+      h3 {
+        margin-bottom: previewConverter(3, $isMobile);
+      }
+    }
+  }
+}
+
+/** HEADER PALETTES AND COVERS - Add color class name to header tag */
+@mixin headerPallete {
+  .header_content_full {
+    &.white::before {
+      background-color: var(--white);
+    }
+
+    &.yellow::before {
+      background-color: var(--yellow);
+    }
+
+    &.blue::before {
+      background-color: var(--blue);
+    }
+
+    &.teal::before {
+      background-color: var(--teal);
+    }
+
+    &.gradient_box.white::before {
+      @include scrimGradient($transparency: 1, $startPoint: 75, $startColor: $white, $direction: 'to right');
+    }
+
+    &.gradient_box.yellow::before {
+      @include scrimGradient($transparency: 1, $startPoint: 75, $startColor: $yellow, $direction: 'to right');
+    }
+
+    &.gradient_box.blue::before {
+      @include scrimGradient($transparency: 1, $startPoint: 75, $startColor: $blue, $direction: 'to right');
+    }
+
+    &.gradient_box.teal::before {
+      @include scrimGradient($transparency: 1, $startPoint: 75, $startColor: $teal, $direction: 'to right');
+    }
+  }
+
+  .header_content_phone {
+    &.gradient_box.white {
+      .hero_image_wrapper::after {
+        @include scrimGradient($transparency: 1, $startPoint: 0, $startColor: $white, $direction: 'to bottom');
+      }
+    }
+
+    &.gradient_box.yellow {
+      .hero_image_wrapper::after {
+        @include scrimGradient($transparency: 1, $startPoint: 0, $startColor: $yellow, $direction: 'to bottom');
+      }
+    }
+
+    &.gradient_box.blue {
+      .hero_image_wrapper::after {
+        @include scrimGradient($transparency: 1, $startPoint: 0, $startColor: $blue, $direction: 'to bottom');
+      }
+
+    }
+
+    &.gradient_box.teal {
+      .hero_image_wrapper::after {
+        @include scrimGradient($transparency: 1, $startPoint: 0, $startColor: $teal, $direction: 'to bottom');
+      }
+    }
+
+
+
+  }
+
+
+
+
+  /** white header colors */
+  .white {
+
+    /** phone version backgrounds */
+    .hero_image_wrapper::before,
+    .hero_image_wrapper::after,
+    .top_wrapper,
+    .bottom_wrapper {
+      background: var(--white);
+    }
+
+
+
+    /** open button */
+    .open_button * {
+      stroke: var(--teal);
+    }
+
+    .header_full_inner_wrapper::before {
+      background: var(--white);
+    }
+
+    .header_signup-bar {
+      background: var(--blue);
+
+      form {
+        &::before {
+          border-color: var(--teal);
+        }
+      }
+
+      input[type='text'],
+      input[type='email'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--teal);
+        color: var(--white);
+
+        &:hover {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+    }
+
+    .header_signup-grid {
+      input[type='text'],
+      input[type='email'] {
+        background: var(--blue);
+        color: var(--white);
+
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--teal);
+        color: var(--white);
+
+        &:hover {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+    }
+
+    .header_content {
+      color: var(--blue);
+    }
+
+    /** DESKTOP NAVIGATION */
+    nav.desktop {
+      .featured_tab {
+        background: var(--yellow);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--blue);
+          color: var(--white);
+        }
+      }
+
+
+      /** left side nav area */
+      .main_tabs {
+        &.underlined .tab {
+          border-color: var(--teal);
+          color: var(--blue);
+
+          &:hover {
+            border-color: var(--yellow);
+          }
+
+        }
+
+        &.boxed .tab {
+          background: var(--yellow);
+          color: var(--blue);
+
+          &:hover {
+            border-color: var(--yellow);
+            color: var(--white);
+          }
+        }
+      }
+    }
+
+    /** social icons */
+    .social_icons {
+      &.filled {
+
+        /** fill social icon backgrounds */
+        div {
+          background: var(--teal);
+
+          &:hover {
+            background: var(--yellow);
+
+            svg * {
+              fill: var(--blue);
+            }
+          }
+        }
+
+
+      }
+
+      &.bordered {
+        /** border only social icon backgrounds */
+        div {
+          border-color: var(--teal);
+
+          &:hover {
+            background: var(--teal);
+          }
+        }
+      }
+
+
+      svg {
+        /** social icon images */
+        * {
+          fill: var(--white); /** social icon color */
+        }
+
+      }
+    }
+
+  }
+
+
+
+
+  /** yellow header colors */
+  .yellow {
+    /** phone version backgrounds */
+    .hero_image_wrapper::before,
+    .hero_image_wrapper::after,
+    .top_wrapper,
+    .bottom_wrapper {
+      background: var(--yellow);
+    }
+
+
+    /** open button */
+    .open_button * {
+      stroke: var(--blue);
+    }
+
+    .header_full_inner_wrapper::before {
+      background: var(--yellow);
+    }
+
+    .header_signup-bar {
+      background: var(--blue);
+
+      form {
+        border-color: var(--teal);
+        border-color: var(--teal);
+      }
+
+      input[type='text'],
+      input[type='email'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--teal);
+        color: var(--white);
+
+        &:hover {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+    }
+
+    .header_signup-grid {
+      input[type='text'],
+      input[type='email'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--teal);
+        color: var(--white);
+
+        &:hover {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+    }
+
+    .header_content {
+      color: var(--blue);
+    }
+
+    /** DESKTOP NAVIGATION */
+    nav.desktop {
+      .featured_tab {
+        background: var(--yellow);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--blue);
+          color: var(--white);
+        }
+      }
+
+      /** left side nav area */
+      .main_tabs {
+        &.underlined .tab {
+          border-color: var(--white);
+          color: var(--blue);
+
+          &:hover {
+            border-color: var(--blue);
+          }
+
+        }
+
+        &.boxed .tab {
+          background: var(--blue);
+          color: var(--white);
+
+          &:hover {
+            border-color: var(--yellow);
+            color: var(--white);
+          }
+        }
+      }
+    }
+
+    /** social icons */
+    .social_icons {
+      &.filled {
+
+        /** fill social icon backgrounds */
+        div {
+          background: var(--teal);
+
+          &:hover {
+            background: var(--yellow);
+
+            svg * {
+              fill: var(--blue);
+            }
+          }
+        }
+
+
+      }
+
+      &.bordered {
+        /** border only social icon backgrounds */
+        div {
+          border-color: var(--teal);
+
+          &:hover {
+            background: var(--teal);
+          }
+        }
+      }
+
+
+      svg {
+        /** social icon images */
+
+        * {
+          fill: var(--white); /** social icon color */
+        }
+
+      }
+    }
+
+  }
+
+  /** header colors */
+  .blue {
+
+    /** phone version backgrounds */
+    .hero_image_wrapper::before,
+    .hero_image_wrapper::after,
+    .top_wrapper,
+    .bottom_wrapper {
+      background: var(--blue);
+    }
+
+    /** open button */
+    .open_button * {
+      stroke: var(--white);
+    }
+
+    .header_full_inner_wrapper::before {
+      background: var(--blue);
+    }
+
+    .header_signup-bar {
+      background: var(--teal);
+
+      form {
+        &::before {
+          border-color: var(--blue);
+        }
+      }
+
+      input[type='text'],
+      input[type='email'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:focus {
+          background: var(--blue);
+          color: var(--white);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--yellow);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--blue);
+          color: var(--white);
+        }
+      }
+    }
+
+    .header_signup-grid {
+      input[type='text'],
+      input[type='email'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:focus {
+          background: var(--teal);
+          color: var(--white);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--teal);
+        color: var(--white);
+
+        &:hover {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+    }
+
+
+    .header_content {
+      color: var(--yellow);
+    }
+
+    /** DESKTOP NAVIGATION */
+    nav.desktop {
+      .featured_tab {
+        background: var(--yellow);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--teal);
+          color: var(--white);
+        }
+      }
+
+
+      /** left side nav area */
+      .main_tabs {
+        .tab {
+          border-color: var(--teal);
+          color: var(--white);
+
+          &:hover {
+            border-color: var(--yellow);
+          }
+        }
+        &.underlined .tab {
+          border-color: var(--teal);
+          color: var(--white);
+
+          &:hover {
+            border-color: var(--yellow);
+          }
+
+        }
+
+        &.boxed .tab {
+          background: var(--teal);
+          color: var(--white);
+
+          &:hover {
+            background: var(--yellow);
+            color: var(--blue);
+          }
+        }
+      }
+    }
+
+    /** SOCIAL ICONS */
+    .social_icons {
+      &.filled {
+
+        /** fill social icon backgrounds */
+        div {
+          background: var(--teal);
+
+          &:hover {
+            background: var(--yellow);
+
+            svg * {
+              fill: var(--blue);
+            }
+          }
+        }
+
+
+      }
+
+      &.bordered {
+        /** border only social icon backgrounds */
+        div {
+          border-color: var(--teal);
+
+          &:hover {
+            background: var(--teal);
+          }
+        }
+      }
+
+
+      svg {
+        /** social icon images */
+
+        * {
+          fill: var(--white); /** social icon color */
+        }
+
+      }
+    }
+
+
+  }
+
+
+
+  /** header colors */
+  .teal {
+    /** phone version backgrounds */
+    .hero_image_wrapper::before,
+    .hero_image_wrapper::after,
+    .top_wrapper,
+    .bottom_wrapper {
+      background: var(--teal);
+    }
+
+    /** open button */
+    .open_button * {
+      stroke: var(--white);
+    }
+
+    .header_signup-bar {
+      background: var(--blue);
+
+      form {
+        border-color: var(--teal);
+        border-color: var(--teal);
+      }
+
+      input[type='text'],
+      input[type='email'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--yellow);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--teal);
+          color: var(--white);
+        }
+      }
+    }
+
+    .header_signup-grid {
+      input {
+        background: var(--blue);
+        color: var(--white);
+
+        &:focus {
+          background: var(--teal);
+          color: var(--white);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+    }
+
+    .header_full_inner_wrapper::before {
+      background: var(--teal);
+    }
+
+    .header_signup {
+      background: var(--blue);
+
+      form {
+        border-color: var(--teal);
+        border-color: var(--teal);
+      }
+
+      input[type='text'],
+      input[type='email'] {
+        background: var(--white);
+        color: var(--blue);
+
+        &:focus {
+          background: var(--yellow);
+          color: var(--blue);
+        }
+      }
+
+      input[type='submit'] {
+        background: var(--yellow);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--teal);
+          color: var(--white);
+        }
+      }
+    }
+
+    .header_content {
+      color: var(--white);
+    }
+
+    /** DESKTOP NAVIGATION */
+    nav.desktop {
+      .featured_tab {
+        background: var(--yellow);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--teal);
+          color: var(--white);
+        }
+      }
+
+
+      /** left side nav area */
+      .main_tabs {
+        &.underlined .tab {
+          border-color: var(--blue);
+          color: var(--white);
+
+          &:hover {
+            border-color: var(--yellow);
+          }
+
+        }
+
+        &.boxed .tab {
+          background: var(--blue);
+          color: var(--white);
+
+          &:hover {
+            border: 1px solid;
+            border-color: var(--yellow);
+            color: var(--white);
+          }
+        }
+      }
+    }
+
+    /** SOCIAL ICONS */
+    .social_icons {
+      &.filled {
+
+        /** fill social icon backgrounds */
+        div {
+          background: var(--blue);
+
+          &:hover {
+            background: var(--yellow);
+
+            svg * {
+              fill: var(--blue);
+            }
+          }
+        }
+
+
+      }
+
+      &.bordered {
+        /** border only social icon backgrounds */
+        div {
+          border-color: var(--teal);
+
+          &:hover {
+            background: var(--teal);
+          }
+        }
+      }
+
+
+      svg {
+        /** social icon images */
+        * {
+          fill: var(--white); /** social icon color */
+        }
+
+      }
+    }
+
+  }
+
+}
+
+@include headerPallete;
+.cms .mobile_view {
+  @include hero_mixin(true);
+  @include headerPallete;
+  @include mobile_small_hero(true);
+  @include mobile_mid_hero(true);
+}
+
+@media only screen and (max-width: 1024px) {
+
+  @include mobile_mid_hero(false);
+
+}
+
+@media only screen and (max-width: 767px) {
+  @include mobile_small_hero(false);
+}
+
+
+
+
+

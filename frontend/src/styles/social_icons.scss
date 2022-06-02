@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+/** SOCIAL ICONS */
+
+.social_icons {
+  display: flex;
+
+  div { /** social icon wrappers */
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 2em;
+    justify-content: center;
+    margin-right: 0.5em;
+    width: 2em;
+  }
+
+  &.filled { /** fill social icon backgrounds */
+    div {
+      /** background: ; */
+
+      &:hover {
+        /** background: ; */
+
+        svg * {
+          /** fill: ; */
+        }
+      }
+    }
+
+
+  }
+
+  &.bordered { /** border only social icon backgrounds */
+    div {
+      border: 3px solid;
+      /** border-color: ; */
+
+      &:hover {
+        /** background:; */
+      }
+    }
+  }
+
+
+  svg {
+    display: block; /** social icon images */
+
+    height: 40%;
+
+    * {
+      fill: var(--white); /** social icon color */
+    }
+
+    &.facebook {
+      height: 50%;
+    }
+
+    &.video {
+      margin-left: 10%;
+    }
+  }
+}

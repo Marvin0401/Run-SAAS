@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+/** PULL QUOTE - CALLOUT BLOCK */
+
+.pull_quote_block {
+  background: var(--teal);
+  color: var(--white);
+  font-size: 2.1vw;
+  padding-left: var(--standard_padding_horiz);
+  padding-right: var(--standard_padding_horiz);
+  text-align: center;
+
+  .quote {
+    margin: auto;
+    max-width: var(--single_col_width);
+    padding-bottom: var(--standard_padding_vert);
+    padding-top: var(--standard_padding_vert);
+
+    &::before {
+      background: var(--blue);
+      content: '';
+      height: var(--bar_height);
+      left: 0;
+      min-height: var(--min_bar_height);
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &::after {
+      background: var(--blue);
+      bottom: 0;
+      content: '';
+      height: var(--bar_height);
+      left: 0;
+      min-height: var(--min_bar_height);
+      position: absolute;
+      width: 100%;
+    }
+
+  }
+
+}
+
+.half_rounded {
+  .pull_quote_block .quote {
+    &::before {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    &::after {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+  }
+
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .pull_quote_block {
+    .quote {
+      font-size: 2.3vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .pull_quote_block {
+    .quote {
+      font-size: 4.5vw;
+    }
+  }
+}

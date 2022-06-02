@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+/** TIMELINE */
+
+.timeline_block {
+  background: var(--white);
+  padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+
+  h2 {
+    margin-bottom: 0em;
+    text-align: center;
+  }
+
+  &::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+.timeline {
+  margin-top: -7em;
+}
+
+.timeline_line {
+  border-color: var(--teal);
+  color: var(--grey-2);
+  border-left: dotted 3px;
+  content: '';
+  height: 100%;
+  left: calc(50% - 1px);
+  position: absolute;
+
+  &::before {
+    background: var(--white);
+    border: 4px solid var(--blue);
+    border-radius: 50%;
+    content: '';
+    height: 7px;
+    left: -9px;
+    position: absolute;
+    top: 0;
+    width: 7px;
+  }
+
+  &::after {
+    background: var(--white);
+    border: 4px solid var(--blue);
+    border-radius: 50%;
+    bottom: 0;
+    content: '';
+    height: 7px;
+    left: -9px;
+    position: absolute;
+    width: 7px;
+  }
+
+
+}
+
+.timeline_element {
+  margin-top: -5em;
+  width: calc(50% - 6vw);
+
+  &:nth-child(2) {
+    margin-top: 0;
+  }
+
+  &:nth-child(even) {
+    margin-right: auto;
+    text-align: right;
+
+    &::before {
+      left: 104%;
+    }
+
+    &::after {
+      left: 102%;
+    }
+  }
+
+  &:nth-child(odd) {
+    margin-left: auto;
+
+    &::before {
+      right: 104%;
+    }
+
+    &::after {
+      right: 102%;
+    }
+  }
+
+  &::before {
+    color: var(--grey-2);
+    border-color: var(--teal);
+    border-top: dotted 3px;
+    content: '';
+    position: absolute;
+    top: 2em;
+    width: 4.2vw;
+  }
+
+  &::after {
+    background: var(--teal);
+    border-radius: 50%;
+    content: '';
+    height: 8px;
+    position: absolute;
+    top: calc(2em - 2.5px);
+    width: 8px;
+  }
+
+}
+
+.timeline_date {
+  color: var(--teal);
+  font-size: calc(22px + 2.6vw);
+  font-weight: 900;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .timeline_block {
+    h2 {
+      margin-bottom: 1em;
+    }
+  }
+
+  .timeline {
+    padding-top: 0.1em;
+  }
+
+  .timeline_line {
+    left: 0;
+  }
+
+  .timeline_element {
+    margin-bottom: 3em;
+    margin-left: auto;
+    margin-right: 0 !important;
+    margin-top: 0;
+    text-align: left !important;
+    width: 90.5%;
+
+    &:nth-child(2) {
+      margin-top: 2em;
+    }
+
+
+    &::before {
+      left: -9% !important;
+      top: 1.2em !important;
+      width: 4% !important;
+    }
+
+    &::after {
+      left: -6% !important;
+      top: calc(1.2em - 2px) !important;
+    }
+
+  }
+
+}
+

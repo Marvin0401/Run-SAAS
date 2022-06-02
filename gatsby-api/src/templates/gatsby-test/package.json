@@ -1,0 +1,36 @@
+{
+  "name": "gatsby-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GatsbyTest",
+  "author": "Adeel Hussain",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "axios": "^0.22.0",
+    "classnames": "^2.3.1",
+    "deepdash": "^5.3.9",
+    "gatsby": "^3.11.1",
+    "gatsby-plugin-react-helmet": "^4.13.0",
+    "gatsby-plugin-sass": "^4.12.0",
+    "lodash.camelcase": "^4.3.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-children-utilities": "^2.6.3",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-modal": "^3.14.3",
+    "react-svg": "^14.0.9",
+    "react-toastify": "^8.1.0",
+    "sass": "^1.38.2",
+    "styled-components": "^5.3.3"
+  }
+}

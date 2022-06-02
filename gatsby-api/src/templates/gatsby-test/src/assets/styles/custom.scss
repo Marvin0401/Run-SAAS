@@ -1,0 +1,40 @@
+.basic_text_block {
+  // Styling for anchor tag in editor content
+  a {
+    color: var(--blue-standard);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* 
+	Copied from quill editor styling for List items 
+	*/
+  ul {
+    counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8
+      list-9;
+    padding-left: 1.5em;
+
+    li {
+      list-style-type: none;
+      padding-left: 1.5em;
+
+      &::before {
+        content: "\2022";
+        display: inline-block;
+        white-space: nowrap;
+        width: 1.2em;
+      }
+    }
+  }
+}
+
+.quill_editor_custom_style {
+  a {
+    color: var(--blue-standard);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

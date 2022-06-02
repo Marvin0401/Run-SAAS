@@ -1,0 +1,1639 @@
+@import "cms_colors";
+@import "scss";
+:host,
+:host .cms_top_nav {
+    background: var(--white_cms);
+    color: var(--grey-4);
+    font-size: 1.3rem;
+    overflow: hidden;
+    font-family: galanogrotesque;
+    .cms_sidebar {
+        padding: 2rem 2rem;
+    }
+    .allow_overflow {
+        overflow: auto;
+    }
+    * {
+        // font-family: galanogrotesque;
+        line-height: 1.3;
+    }
+    h1 {
+        color: var(--grey-5);
+        font-size: 1.8em;
+        margin-bottom: 2em;
+        text-align: center;
+    }
+    h1.big {
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        margin-bottom: 1em;
+        text-transform: none;
+    }
+    #blocks h1 {
+        margin-bottom: 0em;
+    }
+    h2 {
+        color: var(--grey-5);
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0em;
+        width: 100%;
+    }
+    div h2 {
+        margin-top: 0.9em;
+    }
+    div h2 {
+        margin-bottom: 0.5em;
+    }
+    div h2.main-nav {
+        margin-bottom: 1em;
+    }
+    h3 {
+        color: var(--grey-5);
+        font-size: 1.6rem;
+    }
+    h4 {
+        color: var(--grey-4);
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    hr.big {
+        border-top: 1px solid var(--grey-4);
+        margin-bottom: 2.5rem;
+        margin-top: 2.5rem;
+    }
+    hr.big_grey {
+        border-top: 1px solid var(--grey-2);
+        margin-bottom: 2.5rem;
+        margin-top: 2.5rem;
+    }
+    hr.small {
+        border-top: 1px solid var(--grey-2);
+        margin: 1.5rem auto;
+        width: 60%;
+    }
+    /** spacers */
+    hr.spacer {
+        height: 2em;
+    }
+    hr.spacer_small {
+        border: 0;
+        height: 1em;
+    }
+    /** place this where someone is dragging an item between two other items */
+    hr.drag_hover {
+        border-top: 1px solid var(--purple_dark);
+        margin: 0.75rem auto;
+        width: 100%;
+    }
+    input,
+    textarea {
+        background: var(--grey-1);
+        border-radius: 0.2em;
+        font-size: inherit;
+        font-weight: inherit;
+        padding: 0.5em 1em;
+        &.border_none {
+            border-width: 0;
+        }
+        &.simple-text-editor {
+            background: transparent;
+            height: auto;
+            border-radius: 0;
+        }
+    }
+    .radio_wrapper {
+        align-items: center;
+        display: flex;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        svg {
+            top: auto;
+        }
+        .svg {
+            position: absolute;
+            height: 100%;
+        }
+        label {
+            padding-left: 1.8rem;
+        }
+        .outer_circle {
+            fill: var(--grey-4);
+        }
+        input[type="radio"]:checked~.svg .inner_circle {
+            fill: var(--grey-1);
+        }
+    }
+    .select_wrapper,
+    select {
+        font-size: inherit;
+    }
+    select {
+        background: var(--grey-2);
+        font-weight: 600;
+    }
+    .text_link {
+        color: var(--purple_dark);
+        font-size: 85%;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+    .inline-text-image-editor {
+        .slider_label {
+            width: 100%;
+            margin-bottom: 1em;
+        }
+    }
+    /** generic button defintion for control bar */
+    &.cms_top_nav,
+    & .cms_bottom_nav,
+    & .full_row_wrapper {
+        button {
+            background: var(--purple_dark);
+            border-radius: 0.2em;
+            color: var(--white_cms);
+            display: block;
+            letter-spacing: 0.1em;
+            margin-left: auto;
+            padding: 0.2em 0.6em;
+        }
+        button:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: default !important;
+        }
+    }
+}
+
+
+/** REARRANGABLE LISTS */
+
+.cms_controls_list {
+    div.drag.subpage {
+        margin-left: 3em;
+    }
+    ul.drop.subpage {
+        margin-left: 3em;
+    }
+    li {
+        // background: var(--grey-1);
+        border-radius: 0.3em;
+        display: block;
+        font-size: 80%;
+        margin-bottom: 0.5em;
+        overflow: hidden;
+        &.subpage {
+            margin-left: 3em;
+            &::after {
+                background-image: url("../assets/images/cms/L_arrow_thick.svg") no-repeat;
+                background-position: 0 0;
+                background-size: 2em;
+                content: "";
+                left: 0;
+                position: absolute;
+                top: 0;
+            }
+        }
+        .row_wrapper {
+            align-items: center;
+            background: var(--grey-1);
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8em 1.2em;
+            &.is-active {
+                background: var(--purple_dark);
+                color: var(--white_cms);
+                input,
+                .input-like {
+                    color: var(--white_cms);
+                }
+                * {
+                    fill: var(--white_cms);
+                    stroke: var(--white_cms) !important;
+                }
+            }
+        }
+        .add_on_field {
+            background: var(--grey-4);
+            color: var(--white_cms);
+            width: 100%;
+            &.row_wrapper {
+                padding-bottom: 1em;
+                padding-top: 1em;
+            }
+            input {
+                color: var(--white_cms);
+                letter-spacing: 0;
+                margin-left: 1em;
+                margin-right: 0;
+                text-transform: none;
+            }
+        }
+        input,
+        .input-like {
+            background: transparent;
+            color: var(--grey-4);
+            flex-grow: 1;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            margin-bottom: 0;
+            margin-right: 1em;
+            text-transform: uppercase;
+            width: 20%;
+            text-align: left;
+        }
+        input {
+            &:hover {
+                background: var(--grey-3);
+                color: var(--white_cms);
+            }
+            &:focus {
+                outline: 1px dashed var(--grey-4);
+            }
+        }
+        /** controls the icons inside the bar */
+        .svg {
+            cursor: pointer;
+            height: 1.3em;
+            &.selected {
+                * {
+                    fill: var(--grey-5);
+                }
+            }
+            svg {
+                height: 1.3em;
+            }
+        }
+        .svg:not(.overrideHover):hover * {
+            fill: var(--purple_dark) !important;
+        }
+        .drag_icon {
+            &:hover {
+                cursor: grab;
+            }
+        }
+        .drag_icon,
+        .closeIcon {
+            * {
+                stroke: var(--grey-4);
+                stroke-width: 9px;
+            }
+        }
+        .closeIcon {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
+
+.edit_Icon {
+    //   padding-top: 0.5em;
+}
+
+.bin_Icon {
+    margin-right: 0.45em;
+}
+
+
+/** HELP TIPS */
+
+.help_tip {
+    --size: 15px;
+    background: url("../assets/images/icon-tip.svg") no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    height: var(--size);
+    position: absolute;
+    right: 0;
+    top: 0;
+    top: 5px;
+    width: var(--size);
+    z-index: 2;
+    a {
+        color: var(--purple_dark);
+    }
+    .tip_text {
+        background: var(--grey-3);
+        border-radius: 8px;
+        color: var(--white_cms);
+        opacity: 0;
+        padding: 1em 1.5em;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 250px;
+    }
+    &:hover {
+        z-index: 10;
+        .tip_text {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}
+
+.add_button_wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    .add_button {
+        margin-left: 1em;
+        transform: rotate(0deg);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    &:hover {
+        .add_button {
+            transform: rotate(90deg);
+            * {
+                stroke: var(--grey-5);
+            }
+        }
+    }
+}
+
+
+/** wraps options with margins */
+
+.option_wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    &.left {
+        justify-content: flex-start;
+    }
+    &.with_logo {
+        top: -2rem;
+        margin: 0 -2rem;
+        &.yellow {
+            background: var(--yellow);
+        }
+        &.teal {
+            background: var(--teal);
+        }
+        &.blue {
+            background: var(--blue);
+        }
+        &.white {
+            background: var(--white_cms);
+        }
+        .big_logo {
+            cursor: pointer;
+            display: block;
+            margin: 1rem auto;
+            max-height: 50%;
+            max-width: 50%;
+        }
+    }
+    .signature_wrap {
+        .signature {
+            max-width: 100%;
+        }
+    }
+}
+
+
+/** icon selection wrapper options */
+
+.icon_row {
+    .svg {
+        margin-left: 0.4em;
+        margin-right: 0.4em;
+        cursor: pointer;
+        &:hover,
+        &.selected {
+            .dark_shape,
+            .cls-1 {
+                fill: var(--purple_dark) !important;
+                stop-color: var(--purple_dark) !important;
+            }
+            .light_shape {
+                fill: var(--purple_light) !important;
+                stop-color: var(--purple_light) !important;
+            }
+        }
+        &.corner {
+            fill: "balck";
+        }
+    }
+    &.short_icons .svg {
+        max-height: 1.2em;
+    }
+    &.tall_icons .svg {
+        max-height: 2em;
+    }
+    &.two .svg {
+        max-width: 40%;
+    }
+    &.three .svg {
+        max-width: 25%;
+    }
+}
+
+
+/** Intro Block config styles */
+
+.home_intro_layout_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    & .svg {
+        margin-left: 0.4em;
+        margin-right: 0.4em;
+        cursor: pointer;
+        &:hover,
+        &.selected {
+            .cls-1 {
+                fill: var(--purple_dark) !important;
+                stop-color: var(--purple_dark) !important;
+            }
+        }
+    }
+    &.three .svg {
+        max-width: 25%;
+        max-height: 2em;
+    }
+    &.three a {
+        max-width: 25%;
+    }
+}
+
+
+/** to put label on top */
+
+.option_top_label {
+    margin-bottom: 0.5em;
+    width: 100%;
+}
+
+
+/** to put label on side */
+
+.option_side_label {
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+
+/** for wrapping a one line input and label */
+
+.input_wrapper {
+    align-items: center;
+    display: flex;
+    label {
+        margin-right: 0.5em;
+        max-width: 50%;
+    }
+    input {
+        flex-grow: 1;
+        width: 40%;
+    }
+}
+
+
+/** category label with dropdowns below */
+
+.category_label {
+    align-items: center;
+    background: var(--grey-1);
+    border-radius: 0.3em;
+    cursor: pointer;
+    display: flex;
+    font-weight: 700;
+    justify-content: left;
+    margin-bottom: 0.5em;
+    padding: 0.5em 0.7em;
+    .drop_arrow svg {
+        height: 0.8em;
+        margin-left: 0.5em;
+    }
+    &:hover {
+        .drop_arrow svg {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.category_list {
+    display: none;
+}
+
+
+/** SELECTION TOOLS - buttons, toggles, swatches, image upload */
+
+
+/** image upload stuff */
+
+.img_select_wrapper {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    width: 45%;
+    label {
+        text-align: center;
+    }
+}
+
+.img_preview {
+    align-content: center;
+    background-color: var(--grey-1);
+    border-radius: 0.2em;
+    cursor: pointer;
+    display: flex;
+    height: 2.5em;
+    justify-content: center;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    width: 2.5em;
+    svg {
+        vertical-align: middle;
+    }
+    .upload_icon {
+        width: 60%;
+    }
+    &:hover {
+        background: var(--purple_dark);
+        .upload_icon * {
+            fill: var(--white_cms);
+            stroke: var(--white_cms);
+        }
+    }
+}
+
+
+/** toggle wrapper */
+
+.option_wrapper .toggle_button {
+    background: var(--grey-2);
+    border-radius: 0.65rem;
+    cursor: pointer;
+    display: inline-block;
+    height: 1.3rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
+    width: 3.5rem;
+    &::after {
+        background: var(--grey-4);
+        border-radius: 50%;
+        content: "";
+        height: 1.3rem;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: left 0.25s ease;
+        width: 1.3rem;
+    }
+    &:checked {
+        &::after {
+            left: calc(100% - 1.3rem);
+        }
+    }
+}
+
+.option_wrapper .field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    column-gap: 5px;
+    margin-bottom: 0.6em;
+    label {
+        min-width: 80px;
+    }
+    input,
+    select {
+        margin-bottom: 0;
+        padding: 0.5em 1em;
+        width: 100%;
+    }
+}
+
+
+/** slider wrapper */
+
+.slider_track {
+    background: var(--grey-2);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    height: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12rem;
+}
+
+.slider_thumb {
+    background: var(--grey-4);
+    border-radius: 50%;
+    height: 1.5rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1.5rem;
+    &::after {
+        background: var(--grey-4);
+        border-radius: 50%;
+        content: "";
+        height: 1.5rem;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 1.5rem;
+    }
+}
+
+.slider_label {
+    margin-bottom: 0.5em;
+}
+
+
+/** swatch selection */
+
+.swatch_option {
+    border: 1px solid var(--grey-2);
+    height: 2rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    width: 2rem;
+    &.yellow {
+        background: var(--yellow);
+    }
+    &.teal {
+        background: var(--teal);
+    }
+    &.blue {
+        background: var(--blue);
+    }
+    &.white {
+        background: var(--white_cms);
+    }
+    &:hover,
+    &.selected {
+        &::after {
+            border: 1px solid var(--grey-5);
+            content: "";
+            height: calc(100% - 2px);
+            left: 0;
+            outline: 1px solid var(--grey-1);
+            outline-offset: -2px;
+            position: absolute;
+            top: 0;
+            width: calc(100% - 2px);
+        }
+    }
+}
+
+
+/** DESIGN SETTINGS */
+
+
+/** palette selection */
+
+.palette_choice {
+    cursor: pointer;
+    display: flex;
+    height: 2rem;
+    justify-content: stretch;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    &.selected {
+        /** stops hover effects on selected palette */
+        cursor: auto;
+        &:hover::after {
+            content: unset;
+        }
+    }
+    div {
+        flex-grow: 1;
+    }
+    .minor_color {
+        flex-grow: 0.5;
+    }
+    &:hover {
+        &::after {
+            border: 1px solid var(--grey-5);
+            content: "";
+            height: calc(100% - 2px);
+            left: 0;
+            outline: 1px solid var(--grey-1);
+            outline-offset: -2px;
+            position: absolute;
+            top: 0;
+            width: calc(100% - 2px);
+        }
+    }
+}
+
+
+/** font selection */
+
+.font_dropdown {
+    background: var(--grey-2);
+    border-radius: 0.3rem;
+    color: var(--grey-5);
+    font-size: 1.7rem;
+    padding: 0.4em 1em;
+    width: 100%;
+    .selected {
+        pointer-events: none;
+    }
+    &:hover .choices {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    &.button_font {
+        font-size: 1em;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+    &.headline {
+        font-size: 2.5rem;
+        font-weight: 900;
+        >div {
+            padding-bottom: 0.1em;
+            padding-top: 0.1em;
+        }
+    }
+    .choices {
+        background: var(--grey-2);
+        left: 0;
+        opacity: 0;
+        padding-bottom: 0.2em;
+        pointer-events: none;
+        position: absolute;
+        top: 2em;
+        width: 100%;
+        z-index: 3;
+        >div {
+            border-top: 1px var(--white_cms) solid;
+            padding-bottom: 0.4em;
+            padding-top: 0.4em;
+            &:hover {
+                color: var(--white_cms);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+/** BLOCKS PAGE */
+.block_popup_right {
+    background: rgba($grey-5, 0.7);
+    display: none;
+    right: 0;
+    height: 100%;
+    padding: inherit;
+    position: fixed;
+    width: 300px;
+    top: 50px;
+    z-index: 4;
+    &.visible {
+        display: block;
+    }
+    .color-picker {
+        width: 300px;
+        background: #f0f0f4;
+        border-radius: 9px;
+        height: 250px;
+    }
+    .color-picker .react-colorful {
+        width: auto;
+        height: 200px;
+        position:relative;
+        flex-direction: column;
+        user-select: none;
+        cursor: default;
+        box-sizing: border-box;
+    }
+    .color-picker .react-colorful__saturation {
+        position: relative;
+        flex-grow: 1;
+        border-radius: 8px 8px 0 0;
+    }
+    .color-picker-swatches {
+        padding: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .color-picker-swatch {
+        width: 24px;
+        height: 24px;
+        margin: 4px;
+        border: none;
+        padding: 0;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: none;
+    }
+    >div {
+        background: var(--white_cms);
+        box-shadow: 0 0 33px -11px rgba(0, 0, 0, 0.67);
+        display: flex;
+        padding: 3rem 1rem;
+    }
+    .block_option {
+        cursor: pointer;
+        font-size: 60%;
+        letter-spacing: 0.2em;
+        margin-bottom: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        width: 50%;
+        height: 100px;
+        .rect-icon {
+            display: block;
+            margin-bottom: 0.3em;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            padding-left: 10%;
+            height: 70px;
+        }
+        &:hover {
+            border: 1px dashed #555;
+            color: var(--dark_purple);
+            * {
+                .dark_shape {
+                    fill: var(--purple_dark);
+                }
+                .light_shape {
+                    fill: var(--purple_light);
+                }
+            }
+        }
+    }
+}
+
+.block_popup {
+    background: rgba($grey-5, 0.7);
+    display: none;
+    left: 0;
+    height: 100%;
+    padding: inherit;
+    position: fixed;
+    width: 300px;
+    top: 50px;
+    z-index: 4;
+    &.visible {
+        display: block;
+    }
+    >div {
+        background: var(--white_cms);
+        box-shadow: 0 0 33px -11px rgba(0, 0, 0, 0.67);
+        display: flex;
+        padding: 3rem 1rem;
+    }
+    .block_option {
+        cursor: pointer;
+        font-size: 80%;
+        letter-spacing: 0.2em;
+        margin-bottom: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        width: 50%;
+        .svg {
+            display: block;
+            margin-bottom: 0.3em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        &:hover {
+            color: var(--dark_purple);
+            * {
+                .dark_shape {
+                    fill: var(--purple_dark);
+                }
+                .light_shape {
+                    fill: var(--purple_light);
+                }
+            }
+        }
+    }
+}
+
+
+/** general sidebar popup stuff */
+
+.cms_popup_label {
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.block_config {
+    background: var(--white_cms);
+    display: flex;
+    padding: 3rem 1rem;
+    .block_option {
+        cursor: pointer;
+        font-size: 80%;
+        margin-bottom: 1rem;
+        text-align: center;
+        width: 50%;
+        .svg {
+            display: block;
+            margin-bottom: 0.3em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .none {
+            width: 87.08px;
+            height: 48.76px;
+            background: var(--white_cms);
+            border: 1px solid var(--grey-2);
+        }
+        &:hover,
+        &.selected {
+            color: var(--purple_dark);
+            * {
+                .dark_shape {
+                    fill: var(--purple_dark);
+                }
+                .light_shape {
+                    fill: var(--purple_light);
+                }
+            }
+            & .none {
+                border-color: var(--purple_dark);
+            }
+        }
+    }
+}
+
+
+/** FULL WIDTH OPTIONS SCREEN - defaults are set in side panel, so some of these are overrides of that for full width */
+
+
+/** this class goes on each row */
+
+.full_row_wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+    >p,
+    &>.padding-half {
+        padding-right: 50%;
+        width: 100%;
+    }
+    /** add class for a border below it, in order to create a "section" */
+    &.border {
+        border-bottom: 1px solid var(--grey-3);
+        padding-bottom: 2em;
+    }
+    /** adding quarters, thirds, etc. controls how much columns across */
+    &.quarters .full_option_wrapper {
+        width: calc(25% - 1vw);
+    }
+    &.thirds .full_option_wrapper {
+        width: calc(33% - 1vw);
+    }
+    &.halves .full_option_wrapper {
+        width: calc(50% - 1vw);
+    }
+    &.sixths .full_option_wrapper {
+        width: calc(16.5% - 1vw);
+    }
+    .img_preview {
+        height: 4.5em;
+        width: 4.5em;
+    }
+    .slider_label {
+        margin-bottom: 0;
+        margin-right: 1em;
+    }
+    .slider_button {
+        margin: 0;
+    }
+    &.full {
+        .full_option_wrapper {
+            flex-grow: 1;
+        }
+    }
+    h1.full {
+        font-size: 2rem;
+        font-weight: 900;
+        letter-spacing: normal;
+        margin-bottom: 2em;
+        text-align: left;
+        text-transform: none;
+        width: 100%;
+    }
+    /** the following are general definitions for how these elements appear throughout full width settings screens */
+    input,
+    textarea {
+        color: var(--grey-4);
+        max-height: 90px;
+        padding: 0.3em 0.6em !important;
+    }
+    input[type="submit"] {
+        background: var(--purple_dark);
+        color: var(--white_cms);
+        float: right;
+        font-family: galanogrotesque;
+        font-size: 80%;
+        font-weight: 900;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+    label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 0.3em;
+    }
+    .option_wrapper {
+        justify-content: left;
+    }
+}
+
+
+/** this class gets applied to each column */
+
+.full_option_wrapper {
+    /** if full width */
+    &.full_width {
+        width: 100% !important;
+    }
+}
+
+.full_icons_wrapper {
+    .svg {
+        margin-right: 0.3em;
+        max-height: 1.5em;
+        &.selected,
+        &:hover {
+            .dark_shape {
+                fill: var(--purple_dark);
+            }
+        }
+    }
+}
+
+
+/** PALETTE EDITOR */
+
+
+/** how the color swatch appears in the draggable color list */
+
+.palette_list_preview {
+    height: 1em;
+    margin-right: 0.5em;
+    top: 0.2em;
+    width: 1em;
+}
+
+
+/** overrides main_control_bar styles */
+
+.palette_bar {
+    height: calc(100% - 4rem);
+}
+
+.drop.cms_controls_list {
+    min-height: 3rem;
+}
+
+:host {
+    .drag,
+    .row_wrapper {
+        opacity: 1;
+        input {
+            padding: 0;
+        }
+    }
+}
+
+.drag_hover li .row_wrapper {
+    background: var(--purple_dark);
+    color: var(--white_cms);
+    input {
+        color: var(--white_cms);
+    }
+    * {
+        fill: var(--white_cms);
+        stroke: var(--white_cms) !important;
+    }
+}
+
+.drop.empty-drop-container.drag_hover {
+    padding-bottom: 2.5rem;
+    &:before {
+        content: " ";
+        position: absolute;
+        border-top: 1px solid var(--purple_dark);
+        width: 100%;
+        left: 0;
+        padding: 0;
+        top: calc(50% - 1px);
+    }
+}
+
+.hover-top {
+    border-top: 1px solid var(--purple_dark);
+}
+
+.hover-bottom {
+    border-bottom: 1px solid var(--purple_dark);
+}
+
+.empty-drop-container {
+    padding-bottom: 10px;
+    // &:hover {
+    // 	background-color: red;
+    // 	padding-bottom: 20px;
+    // }
+}
+
+.endorsement {
+    .option_group {
+        margin-left: 2em;
+        margin-bottom: 2em;
+    }
+}
+
+.row_select_wrapper {
+    flex-wrap: nowrap;
+    select {
+        width: 30%;
+    }
+}
+
+
+/** TOP NAV */
+
+:host .cms_top_nav {
+    background: var(--grey-1);
+    border-bottom: 1px solid var(--grey-3);
+    font-weight: 700;
+    height: 5rem;
+    width: 100%;
+    .run_logo {
+        align-content: center;
+        background: var(--grey-4);
+        display: inline-flex;
+        float: left;
+        height: 5rem;
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+        img {
+            width: 4rem;
+        }
+    }
+    .left_nav {
+        float: left;
+        padding-left: 2rem;
+        padding-top: 1.5rem;
+    }
+    .right_nav {
+        float: right;
+        padding-right: 2rem;
+        padding-top: 1.5rem;
+    }
+    .svg svg,
+    img.svg {
+        height: 1.3rem;
+        margin-right: 0.2rem;
+        position: relative;
+        top: 0.2rem;
+        width: 2rem;
+    }
+    .tab {
+        cursor: pointer;
+        display: inline;
+        margin-right: 1.5rem;
+        text-transform: uppercase;
+        color: var(--grey-4);
+        &.page_name {
+            color: var(--grey-3);
+            margin-right: 0.8em;
+            text-transform: uppercase;
+            img {
+                height: 1em;
+                margin-left: 1em;
+                top: 0.1em;
+            }
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+        &:hover {
+            color: var(--purple_dark);
+            .svg * {
+                fill: var(--purple_dark);
+            }
+        }
+    }
+}
+
+:host .cms_bottom_nav {
+    display: flex;
+    height: 4rem;
+    justify-content: space-between;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .bottom_nav_right {
+        display: flex;
+    }
+    &.palette_editor {
+        button {
+            font-size: 100%;
+            padding: 0 1rem;
+        }
+    }
+    button {
+        background: var(--grey-4);
+        border-radius: 0.3rem;
+        color: var(--white_cms);
+        height: 100%;
+        letter-spacing: 0.2rem;
+        margin-left: 0.3rem;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        font-family: galanogrotesque;
+        &:hover {
+            background: var(--purple_dark);
+        }
+    }
+    .bottom_nav_left {
+        align-items: center;
+        display: flex;
+        flex-wrap: nowrap;
+        padding-left: 1.5rem;
+        .view_icon {
+            cursor: pointer;
+            height: 70%;
+            margin-right: 1rem;
+            &:hover {
+                * {
+                    fill: var(--purple_dark);
+                }
+            }
+        }
+    }
+    /** wraps big control buttons (save, erase, publish, manage) */
+    .bottom_nav_right {
+        /** right align the buttons */
+        margin-left: auto;
+    }
+}
+
+:host {
+    /** Defining how the rows in which editing colors on classes appears */
+    .class_color_edit_row {
+        @extend .clearfix;
+        border-bottom: 1px solid var(--grey-3);
+        font-size: 80%;
+        margin-bottom: 0.4em;
+        padding-bottom: 0.3em;
+        text-align: left;
+        /** name of class */
+        .selected_class {
+            font-weight: 700;
+        }
+        /** attribute name (ie color or background-color) */
+        .attribute_name {
+            clear: both;
+            float: left;
+        }
+        /** currently selected color */
+        .active_swatch {
+            border: 1px solid var(--grey-2);
+            float: left;
+            height: 1em;
+            margin-left: 0.3em;
+            width: 1em;
+        }
+        /** swatch choice wrapper */
+        .swatch_choices {
+            float: right;
+        }
+        /** options to choose from */
+        .swatch {
+            border: 1px solid var(--grey-2);
+            cursor: pointer;
+            display: inline-block;
+            height: 1em;
+            margin-left: 0.05em;
+            width: 1em;
+            &.unset {
+                border: 1px solid var(--red);
+                overflow: hidden;
+                /** adds the red cross line */
+                &::after {
+                    background: var(--red);
+                    content: "";
+                    height: 147%;
+                    left: 48%;
+                    position: absolute;
+                    top: -3px;
+                    transform: rotate(45deg);
+                    width: 1px;
+                }
+            }
+        }
+    }
+    /** PALETTE MANAGER */
+    /** sections that holds color preview on palette manager */
+    .palette_manager_colors_preview {
+        display: flex;
+        height: 15px;
+        >div {
+            /** forces empty color swatch divs to fill space */
+            flex-grow: 1;
+        }
+    }
+    .color_category_selector_section {
+        align-content: space-between;
+        display: flex;
+        height: 15px;
+        width: 27px;
+        /**  this is overriding other values from checkbox css set in main _forms.scss file */
+        .checkbox_wrapper {
+            width: 33%;
+            height: 0;
+            /** set both input and svg to same size to ensure accurate click spot */
+            input,
+            svg {
+                height: 7px;
+                top: 0;
+                width: 7px;
+            }
+            /** overides css applied to other icons on the bar */
+            .svg {
+                margin-left: 0;
+                pointer-events: none;
+                &:hover * {
+                    fill: none;
+                }
+            }
+        }
+        >div {
+            &:first-child rect {
+                fill: #ffda00;
+            }
+            &:nth-child(2) rect {
+                fill: var(--orange);
+            }
+            &:nth-child(3) rect {
+                fill: var(--red);
+            }
+            &:nth-child(4) rect {
+                fill: var(--green);
+            }
+            &:nth-child(5) rect {
+                fill: var(--blue-standard);
+            }
+            &:nth-child(6) rect {
+                fill: var(--purple);
+            }
+        }
+    }
+}
+
+
+/** USER CONTROL PANEL SECTIONS & DEFINITIONS */
+
+:host .full_screen_control_bar {
+    height: calc(100vh - 5rem);
+    overflow: auto;
+    padding: 3vw 6vw;
+    width: 100vw;
+    /** this gets added as an inner div to shrink page width where necessary */
+    div.full_screen_control_bar-inner_wrapper {
+        margin: auto;
+        max-width: 900px;
+    }
+    /** take advantage of the additional space for bigger text */
+    input,
+    textarea,
+    label {
+        font-size: 16px;
+    }
+}
+
+.button.verified {
+    cursor: normal;
+}
+
+.copy-icon {
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+    &.small-icon svg {
+        height: 1.8rem;
+    }
+    svg {
+        fill: var(--grey-2);
+    }
+    &:active svg {
+        fill: var(--grey-1);
+    }
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+input.verified {
+    padding-right: 30px !important;
+    &+span::before {
+        animation: none;
+        content: url("../assets/images/cms/bullet-icon_circle-fill-success.svg");
+        height: 16px;
+        left: 0;
+        top: 0;
+        margin: auto;
+        margin-left: -24px;
+        position: absolute;
+        right: 0;
+        width: 16px;
+        cursor: default;
+        fill: var(--success_color) !important;
+    }
+}
+
+input.is-loading {
+    padding-right: 30px !important;
+    &+span::before {
+        animation: button-loading-spinner 1s linear infinite;
+        border: 4px solid transparent;
+        border-radius: 50%;
+        border-top-color: var(--gray-3);
+        bottom: 0;
+        content: "";
+        height: 16px;
+        left: 0;
+        margin: auto;
+        margin-left: -28px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 16px;
+    }
+}
+
+:host .full_screen_control_bar .domain-btn-wrapper {
+    margin-bottom: 0.6em;
+    margin-top: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    width: 100% !important;
+    .domain-btn {
+        background-color: #ededed !important;
+        background-color: var(--grey-1);
+        border-radius: 0.2em;
+        cursor: pointer;
+        height: 2.5em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        max-height: 90px;
+        padding: 0.3em 0.6em !important;
+        color: black;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+:host {
+    /* Font settings */
+    .fontSettings {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        .headings {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            width: calc(100% - 60px - 40px);
+            div {
+                width: calc(100% / 4);
+            }
+        }
+        .fontset {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            width: 100%;
+            input {
+                width: calc(((100% - 60px - 40px) / 4) - 52px);
+                box-sizing: content-box;
+                margin: 0;
+            }
+            >div {
+                width: calc(((100% - 60px - 40px) / 4) - 20px);
+                box-sizing: content-box;
+            }
+            span.svg {
+                width: 30px;
+                align-self: center;
+                cursor: pointer;
+            }
+        }
+        .formset {
+            input {
+                background: none;
+                padding: 0;
+                margin: 0;
+            }
+            span {
+                line-height: 21px;
+            }
+        }
+        .react-dropdown-select {
+            height: 100%;
+        }
+        .react-dropdown-select-content input {
+            width: 100%;
+        }
+        .headline .react-dropdown-select-content {
+            // span + input {
+            //   width: 0;
+            // }
+            flex-wrap: nowrap;
+        }
+        .react-dropdown-select-option-remove {
+            padding: 0 4px;
+        }
+        .react-dropdown-select-content.react-dropdown-select-type-multi {
+            display: flex;
+            overflow-x: scroll;
+            height: 60px;
+            flex-wrap: nowrap;
+            span {
+                flex-wrap: nowrap;
+                align-items: center;
+                width: max-content;
+            }
+        }
+        +.add_button_wrapper {
+            margin-top: 40px;
+            margin-right: 20px;
+        }
+        svg {
+            width: 20px;
+        }
+    }
+    .black-stroke {
+        svg {
+            height: 20px;
+            >line {
+                stroke: var(--grey-5);
+            }
+        }
+    }
+    .block-page-name {
+        margin: 1em 0 2.5em 0;
+        text-transform: uppercase;
+    }
+    .block-img {
+        display: flex;
+        justify-content: left;
+    }
+}
+
+.external-link {
+    background-color: transparent !important;
+    color: var(--grey-4) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    input {
+        background-color: var(--grey-1) !important;
+        line-height: 1.8em;
+        margin-left: 1em !important;
+        margin-right: 0 !important;
+        padding: 0 0.5em;
+        font-weight: 400 !important;
+        text-transform: none !important;
+        outline: none !important;
+        &:hover {
+            color: var(--grey-4) !important;
+        }
+    }
+}
+
+.pricing-table  {
+    button {
+       color: var(--white_cms)
+    }
+}

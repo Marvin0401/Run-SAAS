@@ -1,0 +1,200 @@
+@charset "UTF-8";
+
+/** FORMS */
+@mixin forms($isMobile) {
+  form {
+    width: 100%;
+
+    .spacer {
+      height: 1em;
+    }
+  }
+
+  :focus-visible {
+    outline: none;
+  }
+
+  /** set font size here */
+  input,
+  select,
+  .select_wrapper {
+    font-size: calc(20px + #{previewConverter(0.3, $isMobile)});
+  }
+
+  input,
+  select {
+    cursor: pointer;
+    font-family: var(--button_font);
+    font-weight: 900;
+    margin-bottom: 0.6em;
+    padding: 0.6em 1em;
+    width: 100%;
+
+    &[type='submit'] {
+      font-family: var(--button_font);
+      width: auto;
+    }
+  }
+
+  label {
+    text-align: left;
+  }
+
+  /** select dropdown */
+  select {
+    appearance: none;
+    padding-right: 3em;
+
+    &::after {
+      background: var(--teal) url('../assets/images/select_arrow.svg') no-repeat;
+      background-position: center center;
+      background-size: 50% 35%;
+      content: '';
+      float: right;
+      height: 100%;
+      padding-left: 1em;
+      width: 15%;
+    }
+
+  }
+
+  .dropdown_arrow {
+    height: 1em;
+    pointer-events: none;
+    position: absolute;
+    right: 1em;
+    top: 0.8em;
+    width: 1.4em;
+    z-index: 2;
+  }
+
+  textarea {
+    font-family: var(--main_font);
+    font-size: inherit;
+    font-weight: 700;
+    height: 10em;
+    margin-bottom: 0.6em;
+    padding: 0.6em 1em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+
+  /** checkbox */
+  .checkbox_wrapper {
+    margin-bottom: 0.6em;
+
+    input[type='checkbox'] {
+      height: 1em;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 1em;
+      z-index: 2;
+
+      &:checked~.svg polygon {
+        fill: var(--white);
+      }
+    }
+
+    svg {
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1em;
+
+      rect {
+        fill: var(--blue);
+      }
+
+      polygon {
+        fill: none;
+      }
+    }
+
+    label {
+      display: block;
+      padding-left: 1.7em;
+    }
+  }
+
+
+  /** radio buttons */
+  .radio_wrapper {
+    margin-bottom: 0.6em;
+
+    input[type='radio'] {
+      height: 1em;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 1em;
+      z-index: 2;
+
+      &:checked~.svg .inner_circle {
+        fill: var(--white);
+      }
+    }
+
+    svg {
+      height: 1em;
+      left: 0;
+      position: absolute;
+      top: 0.3em;
+      width: 1em;
+
+      .outer_circle {
+        fill: var(--blue);
+      }
+
+      .inner_circle {
+        fill: none;
+      }
+    }
+
+    label {
+      display: block;
+      padding-left: 1.7em;
+    }
+  }
+
+
+  .rounded {
+    input,
+    textarea,
+    select {
+      border-radius: 0.3em;
+    }
+  }
+
+  .half_rounded {
+    input,
+    textarea,
+    select {
+      border-bottom-right-radius: 0.3em;
+      border-top-left-radius: 0.3em;
+    }
+  }
+}
+
+@include forms(false);
+
+@mixin mobile_mid_forms {
+  input,
+  textarea,
+  select,
+  .select_wrapper {
+    font-size: 16px;
+  }
+}
+
+.cms .mobile_view {
+  @include forms(true);
+  @include mobile_mid_forms;
+}
+
+@media only screen and (max-width: 1024px) {
+  @include mobile_mid_forms;
+}

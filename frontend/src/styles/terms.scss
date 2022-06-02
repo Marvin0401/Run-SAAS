@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+@import 'scss.scss';
+@import 'cms_colors.scss';
+@import 'webfonts.scss';
+
+//HERO
+
+.terms-nav {
+  display: flex;
+  height: 8rem;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--purple_dark);
+
+  .logo {
+    height: 7.5rem;
+  }
+
+  nav {
+    margin-right: 2rem;
+    .tab {
+      color: white;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: inline-block;
+      margin-left: 2em;
+
+      img {
+        height: 1.5rem;
+        padding-left: 0.2rem;
+      }
+
+      &:hover {
+        color: var(--teal);
+      }
+    }
+  }
+}
+
+//FEATURE
+.terms-body {
+  padding: 0vw 8vw;
+  display: flex;
+
+  h1 {
+    color: var(--purple_dark) !important;
+    margin-bottom: 0.5em;
+  }
+}

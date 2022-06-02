@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.cropper-container {
+  .default_style svg,
+  header,
+  input,
+  div,
+  h2,
+  br,
+  a,
+  fieldset,
+  span,
+  img,
+  ul,
+  li,
+  hr,
+  button {
+    transition: none;
+  }
+}
+
+// .cropper-container.cropper-bg {
+//     background: none;
+// }
+.image-upload-modal {
+  button {
+    background: var(--purple_dark);
+    color: var(--white);
+    font-family: galanogrotesque;
+    font-size: 1em;
+    letter-spacing: 0.4rem;
+    padding: 0.6em 1em;
+    text-transform: uppercase;
+  }
+
+  span {
+    color: var(--purple_dark);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+}
+
+.popup .popup_inner {
+  max-height: 80%;
+  padding: 7rem;
+}

@@ -1,0 +1,44 @@
+version: "3.1"
+services:
+  mysql:
+    image: mysql:5.7.35
+    environment:
+      - MYSQL_ROOT_PASSWORD=run
+      - MYSQL_DATABASE=run
+      - MYSQL_USER=run
+      - MYSQL_PASSWORD=run
+    ports:
+      - 3306:3306
+    volumes:
+      - rundb:/var/lib/mysql
+  api:
+    environment:
+      - DB_NAME=run
+      - DB_USER=run
+      - DB_PASSWORD=run
+      - DB_HOST=mysql
+      - DB_PORT=
+      - APP_ENV=dev
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
+      - AWS_STORAGE_BUCKET_NAME=
+      - route53_Domain=
+      - SENDGRID_API_KEY=
+      - SENDGRID_FROM_EMAIL=
+      - FRONT_END_BASE_URL=http://localhost:3000/
+      - SITE_DATA_BUCKET=
+      - AWS_REGION_NAME=
+      - LISTENER_ARN=
+      - twitter_token=
+    depends_on:
+      - mysql
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    links:
+      - mysql
+volumes:
+  rundb:

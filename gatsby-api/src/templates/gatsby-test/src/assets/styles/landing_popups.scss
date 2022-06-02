@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+
+@import 'buttons';
+
+/** POPUP */
+
+.popup {
+  align-content: center;
+  align-items: center;
+  background: hsla(0, 0, 0, 0.9);
+  color: var(--white);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  overflow-y: overlay;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 20;
+}
+
+.popup_inner {
+  background: var(--teal);
+  color: var(--white);
+  min-width: 650px;
+  padding: 7%;
+  text-align: center;
+  width: 50%;
+
+  h1 {
+    color: var(--white);
+    margin-bottom: 0.1em;
+  }
+
+  p {
+    font-size: calc(14px + 0.5vw);
+    margin-bottom: 1.3em;
+  }
+
+}
+
+.donate_popup {
+  .donate_buttons {
+    font-size: 3.5vw;
+    justify-content: space-between;
+
+    .donation_amount {
+      background: var(--yellow);
+      color: var(--blue);
+      flex-grow: 0;
+      margin-bottom: 3%;
+      margin-right: 0 !important;
+      width: 48.5%;
+
+      &:last-child {
+        border-color: var(--blue);
+        color: var(--white);
+
+        &:hover {
+          background: var(--blue);
+        }
+      }
+
+    }
+
+  }
+
+}
+
+.signup_popup {
+  input[type='text'],
+  input[type='email'] {
+    background: var(--blue);
+    color: var(--white);
+
+    &:focus {
+      background: var(--yellow);
+      color: var(--blue);
+    }
+  }
+
+  button {
+    border-bottom-color: var(--blue);
+    color: var(--white);
+    display: block;
+    margin-left: auto;
+
+    margin-top: 0.3em;
+
+    svg * {
+      stroke: var(--white);
+    }
+
+  }
+}
+
+
+
+.general_landing_popup {
+  .btn_style-2 {
+    background: var(--blue);
+    color: var(--white);
+    font-size: 120%;
+  }
+
+}
+
+
+.popup_close_button {
+  @extend .menu_button;
+  display: block !important;
+  height: 2em;
+  position: absolute;
+  right: 1.5em;
+  top: 1.5em;
+  width: 2em;
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+  .popup_inner {
+    min-width: inherit;
+    width: 70%;
+
+    .donate_buttons {
+      font-size: 5vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .popup_inner {
+    min-width: inherit;
+    padding-bottom: 15%;
+    padding-top: 15%;
+    width: 90%;
+
+    .donate_buttons {
+      font-size: 7vw;
+
+      .donation_amount {
+        margin-right: 0;
+        width: 100%;
+      }
+    }
+  }
+
+}

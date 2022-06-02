@@ -1,0 +1,244 @@
+@charset "UTF-8";
+
+@import "scss";
+
+/** TWITTER extra BLOCK */
+@mixin twitter_extra($isMobile) {
+  .twitter_block {
+    position: relative;
+    background: var(--teal);
+    color: var(--blue);
+    margin: auto;
+    padding: var(--standard_padding_vert) 0;
+  }
+
+  .outer_tweet_wrapper {
+    overflow: hidden;
+  }
+
+  .tweet_wrapper {
+    width: 100%;
+    display: flex;
+    transform: translateX(-50%);
+    right: -50%;
+    flex-wrap: nowrap;
+    column-gap: 0.3%;
+  }
+
+  .twitter_section_banner {
+    font-size: previewConverter(1, $isMobile);
+    height: 6em;
+    left: previewConverter(9, $isMobile);
+    position: absolute;
+    top: -2.1em;
+    width: 6em;
+
+    #fold {
+      fill: darkenColor($yellow);
+    }
+
+    #main {
+      fill: var(--yellow);
+    }
+
+    #logo {
+      fill: var(--blue);
+    }
+  }
+
+  .tweet {
+    border-top: calc(9px + #{previewConverter(0.1, $isMobile)}) solid;
+    border-top-color: var(--yellow);
+    border-bottom: calc(9px + #{previewConverter(0.1, $isMobile)}) solid;
+    border-bottom-color: var(--blue);
+    background: white;
+    padding: 2%;
+    margin-right: 2px;
+    min-width: 60%;
+    left: 20%;
+    opacity: 1;
+    cursor: pointer;
+
+    > * {
+      opacity: 0.3;
+    }
+
+    &.selected {
+      cursor: default;
+      > * {
+        opacity: 1;
+      }
+
+      &.move_right > * {
+        opacity: 0.3;
+      }
+    }
+
+    &.move_right:nth-child(2) > * {
+      opacity: 1;
+    }
+
+    &.move_right {
+      cursor: pointer;
+      left: 20%;
+      transition: 0.5s;
+    }
+
+    &.move_left {
+      cursor: pointer;
+    }
+  }
+
+  .twitter_profile_img {
+    background: url("../assets/images/twitter_profile.jpg");
+    background-size: cover;
+    border-color: var(--blue);
+    border-radius: 50%;
+    border-width: 0.2em;
+    float: left;
+    height: 3.3em;
+    margin-bottom: 0.2em;
+    margin-right: 0.6em;
+    width: 3.3em;
+  }
+
+  .twitter_handle {
+    font-size: 1.3em;
+    font-weight: 800;
+  }
+
+  .twitter_date {
+    border-bottom: 1px solid;
+    border-bottom-color: var(--teal);
+    color: var(--teal);
+    display: inline-block;
+    text-transform: uppercase;
+  }
+
+  .tweet_text {
+    font-family: var(--headline_font);
+    font-size: calc(1em + #{previewConverter(1, $isMobile)});
+    font-weight: 800;
+    margin-top: 1em;
+  }
+
+  .tweet_buttons {
+    align-items: center;
+    background: var(--blue);
+    bottom: calc(#{var(--standard_padding_vert)} - 0.9em);
+    display: flex;
+    left: 50%;
+    padding: 0.8em;
+    position: absolute;
+    transform: translateX(-50%);
+
+    svg {
+      height: 0.8em;
+      margin-left: 0.4em;
+      margin-right: 0.4em;
+      transition: 0.2s;
+      width: 0.8em;
+
+      &:hover {
+        height: 1.1em;
+        width: 1.1em;
+
+        * {
+          stroke: var(--yellow);
+        }
+      }
+    }
+  }
+
+  .rounded .tweet {
+    border-radius: 0.5em;
+  }
+
+  .rounded .tweet_buttons {
+    border-radius: 1.1em;
+  }
+
+  /** Alternate palette - Add alt_palette class to section block to invoke it */
+
+  .twitter_block.alt_palette {
+    background: var(--yellow);
+    color: var(--blue);
+
+    .twitter_section_banner {
+      #fold {
+        fill: darkenColor($blue);
+      }
+
+      #main {
+        fill: var(--blue);
+      }
+
+      #logo {
+        fill: var(--white);
+      }
+    }
+
+    .tweet {
+      background: var(--white);
+      border-bottom-color: var(--blue);
+      border-top-color: var(--teal);
+    }
+
+    .twitter_profile_img {
+      border-color: var(--blue);
+    }
+
+    .twitter_date {
+      border-bottom-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .tweet_buttons {
+      background: var(--blue);
+
+      svg:hover {
+        * {
+          stroke: var(--yellow);
+        }
+      }
+    }
+  }
+}
+
+@include twitter_extra(false);
+
+@mixin mobile_small_twitter($isMobile) {
+  .twitter_block {
+    padding: #{previewConverter(15, $isMobile)} 0;
+  }
+
+  .tweet {
+    padding: 2% 2% 3%;
+  }
+
+  .tweet_wrapper {
+    width: 395%;
+  }
+
+  .twitter_handle {
+    font-size: 1em;
+  }
+
+  .twitter_section_banner {
+    font-size: previewConverter(2.7, $isMobile); /** sets overall size of banner through child use of em units */
+  }
+
+  .tweet_buttons {
+    bottom: calc(#{previewConverter(15, $isMobile)} - 0.9em);
+    font-size: calc(20px);
+  }
+}
+
+.cms .mobile_view {
+  @include twitter_extra(true);
+  @include mobile_small_twitter(true);
+}
+
+@media only screen and (max-width: 767px) {
+  @include mobile_small_twitter(false);  
+}

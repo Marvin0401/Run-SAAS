@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+@import "scss.scss";
+@import "cms_colors.scss";
+@import "webfonts.scss";
+
+.expansion-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid #cdcdcd;
+  border-radius: 2px;
+  .expansion-header {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    cursor: pointer;
+    .expansion-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--purple_dark);
+    }
+  }
+  .expansion-icon {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    .arrow {
+      height: 0.85em;
+      position: absolute;
+      right: 0.5em;
+      top: 0.7em;
+      transition: 0.2s;
+      transition-delay: 0.1s;
+      width: 0.85em;
+
+      * {
+        stroke: var(--purple_dark);
+      }
+    }
+    .arrowDown {
+      transform: rotate(90deg);
+    }
+  }
+}

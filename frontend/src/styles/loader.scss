@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.loader {
+  border: 1.5em solid var(--grey-2);
+  border-top: 1.5em solid var(--grey-4);
+  border-radius: 50%;
+  width: 8em;
+  height: 8em;
+  margin: auto;
+  animation: spin 2s linear infinite;
+
+  &.small {
+    border-width: 0.7em;
+    width: 3em;
+    height: 3em;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+
+/** BASIC TEXT BLOCK */
+
+.basic_text_block {
+  background: var(--white);
+  padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.basic_text_inner {
+  margin: auto;
+  max-width: var(--single_col_width);
+
+  >*:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+/** DONATE extra BLOCK */
+@mixin donate_extra($isMobile){
+  .donate_block {
+    background: var(--teal);
+    color: var(--white);
+    padding: #{previewConverter(8, $isMobile)} var(--standard_padding_horiz);
+
+    h2 {
+      display: none;
+      text-align: center;
+    }
+
+    .donate_label {
+      display: none;
+    }
+
+    &.headline {
+      padding-bottom: var(--standard_padding_vert);
+      padding-top: var(--standard_padding_vert);
+
+      h2 {
+        display: block;
+        margin-bottom: 1em;
+      }
+
+      .donate_label {
+        display: none;
+      }
+    }
+
+    &.label {
+      .donate_label {
+        display: block;
+      }
+
+    }
+
+  }
+
+  .donate_buttons {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: var(--headline_font);
+    font-size: previewConverter(2.5, $isMobile);
+    font-weight: 900;
+    justify-content: center;
+
+    >* {
+      margin-right: 0.5em;
+    }
+
+    .donation_amount {
+      background: var(--yellow);
+      color: var(--blue);
+      display: block;
+      flex-grow: 1;
+      padding: 0.45em 0.6em;
+      text-align: center;
+      z-index: 10;
+
+      &:hover {
+        background: var(--blue);
+        color: var(--white);
+      }
+
+      &:last-child {
+        background: none;
+        border: 1px solid;
+        border-color: var(--blue);
+        color: var(--white);
+        margin-right: 0;
+
+        &:hover {
+          background: var(--blue);
+          border: 1px solid;
+          border-color: var(--blue);
+          color: var(--white);
+        }
+
+      }
+    }
+
+  }
+
+  .rounded .donation_amount {
+    border-radius: 0.2em;
+  }
+
+  .half_rounded .donation_amount:last-child:hover {
+    border-radius: 0 0 0.5em;
+  }
+
+  /** Alternate palette - Add alt_palette class to section block to invoke it */
+
+  .donate_block.alt_palette {
+    background: var(--yellow);
+    color: var(--blue);
+
+    .donation_amount {
+      background: var(--blue);
+      color: var(--teal);
+
+      &:hover {
+        background: var(--teal);
+        color: var(--white);
+      }
+
+      &:last-child {
+        background-color: transparent;
+        border-color: var(--blue);
+        color: var(--blue);
+
+        &:hover {
+          background: var(--teal);
+          border-color: var(--teal);
+          color: var(--white);
+
+        }
+
+      }
+    }
+
+  }
+}
+
+@include donate_extra(false);
+
+@mixin mobile_small_donate_extra($isMobile) {
+  .donate_block {
+    .donate_label {
+      text-align: center;
+      width: 100%;
+    }
+
+  }
+
+  .donate_buttons {
+    font-size: previewConverter(7, $isMobile);
+    justify-content: space-between;
+
+    >* {
+      margin-bottom: 3%;
+      margin-right: 0;
+    }
+
+    .text {
+      font-size: previewConverter(7, $isMobile);
+      letter-spacing: 0.2em;
+      margin-bottom: 0.9em;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+    }
+
+    .donation_amount {
+      flex-grow: 0;
+      width: 48%;
+    }
+
+  }
+}
+
+.cms .mobile_view {
+  @include donate_extra(true);
+  @include mobile_small_donate_extra(true);
+}
+
+@media only screen and (max-width: 767px) {
+  @include mobile_small_donate_extra(false);
+}

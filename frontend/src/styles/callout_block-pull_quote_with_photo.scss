@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+/** PULL QUOTE WITH PHOTO - CALLOUT BLOCK */
+
+@mixin pull_quote_with_photo($isMobile) {
+  .pull_quote_with_photo_block {
+    display: flex;
+
+    /** option */
+    &.flip_content {
+      .quote_section {
+        order: 2;
+      }
+    }
+
+    > div {
+      min-height: previewConverter(34, $isMobile);
+      width: 50%;
+    }
+
+    .quote_section {
+      align-content: center;
+      background: var(--teal);
+      display: flex;
+      justify-content: center;
+      padding: var(--small_padding) var(--standard_padding_horiz);
+    }
+
+    .quote {
+      border-color: var(--blue);
+      color: var(--white);
+      font-size: previewConverter(2.1, $isMobile);
+      padding-left: 10%;
+      z-index: 3;
+
+      &::before {
+        background: var(--blue);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 8px;
+      }
+    }
+
+    .qoute_callout_textEditor {
+      max-width: 100%;
+    }
+
+    .photo_section img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .half_rounded {
+    .pull_quote_with_photo_block .quote {
+      &::before {
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+    }
+  }
+}
+
+@include pull_quote_with_photo(false);
+
+@mixin mobile_mid_pull_quote_with_photo($isMobile) {
+  .pull_quote_with_photo_block {
+    .quote {
+      font-size: previewConverter(2.3, $isMobile);
+    }
+  }
+}
+@mixin mobile_small_pull_quote_with_photo($isMobile) {
+  .pull_quote_with_photo_block {
+    > div {
+      min-height: previewConverter(68, $isMobile);
+    }
+
+    .quote_section {
+      order: 2;
+      padding: 15%;
+    }
+
+    .quote {
+      font-size: previewConverter(4.5, $isMobile);
+    }
+
+    .photo_section {
+      order: 1;
+    }
+  }
+}
+
+.cms .mobile_view {
+  @include pull_quote_with_photo(true);
+  @include mobile_mid_pull_quote_with_photo(true);
+  @include mobile_small_pull_quote_with_photo(true);
+}
+
+@media only screen and (max-width: 1024px) {
+  @include mobile_mid_pull_quote_with_photo(false);
+}
+
+@media only screen and (max-width: 767px) {
+  @include mobile_small_pull_quote_with_photo(false);
+}

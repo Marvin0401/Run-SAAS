@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+/** DATA DETAILS - CALLOUT BLOCK */
+
+.data_details_block {
+  background: var(--teal);
+  padding-left: var(--standard_padding_horiz);
+  padding-right: var(--standard_padding_horiz);
+}
+
+.data_details_inner {
+  break-inside: avoid;
+  display: grid;
+  grid-template-columns: 30% auto;
+  row-gap: 2em;
+  width: 100%;
+}
+
+.data_details_columns_wrapper {
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 5%;
+  margin: auto;
+  max-width: var(--single_col_width);
+  padding-bottom: 6vw;
+  padding-top: 6vw;
+  z-index: 3;
+
+  &::before {
+    background: var(--blue);
+    content: '';
+    height: var(--bar_height);
+    left: 0;
+    min-height: var(--min_bar_height);
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &::after {
+    background: var(--blue);
+    bottom: 0;
+    content: '';
+    height: var(--bar_height);
+    left: 0;
+    min-height: var(--min_bar_height);
+    position: absolute;
+    width: 100%;
+  }
+
+}
+
+.detail_label {
+  border-bottom: 1px solid var(--blue);
+  break-inside: avoid;
+  font-weight: 700;
+  padding-bottom: 0.3em;
+  padding-right: 1em;
+  text-transform: uppercase;
+}
+
+.detail_info {
+  border-bottom: 1px solid var(--blue);
+  break-inside: avoid;
+  padding-bottom: 0.3em;
+}
+
+
+.half_rounded {
+  .data_details_columns_wrapper {
+    &::before {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    &::after {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+  }
+
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+  .data_details_columns_wrapper {
+    padding-bottom: var(--standard_padding_vert);
+    padding-top: var(--standard_padding_vert);
+  }
+
+}
+
+@media only screen and (max-width: 767px) {
+  .data_details_columns_wrapper {
+    column-count: 1;
+    padding-bottom: var(--standard_padding_vert);
+    padding-top: var(--standard_padding_vert);
+  }
+
+  .data_details_inner:first-child {
+    margin-bottom: 2em;
+  }
+
+
+}

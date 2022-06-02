@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+/**  SHORT FORM EXTRA BLOCK */
+
+.short_form_block {
+  display: flex;
+  min-height: 30vw;
+
+  /** options */
+  &.no_image {
+    .photo_section {
+      display: none;
+    }
+
+    .form_section {
+      padding-left: 30%;
+      padding-right: 30%;
+    }
+  }
+
+  &.flip_content {
+    .photo_section {
+      order: -1;
+    }
+  }
+
+  .form_section {
+    align-items: center;
+    background: var(--yellow);
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+    width: 50%;
+  }
+
+
+  .photo_section {
+    background: url('../images/sample_image-3.jpg');
+    background-position: center center;
+    background-size: cover;
+    flex-grow: 1;
+    width: 50%;
+  }
+
+  .form-control {
+    background: var(--teal);
+    color: var(--white);
+    &::placeholder {
+      color: var(--white);
+    }
+
+    &:focus {
+      background: var(--blue);
+      color: var(--yellow);
+    }
+  }
+
+  button {
+    border-bottom-color: var(--teal);
+    color: var(--blue);
+    display: block;
+    margin-left: auto;
+
+    margin-top: 0.3em;
+
+    svg * {
+      stroke: var(--teal);
+    }
+
+  }
+
+}
+
+.vol_sec_header {
+  color: var(--blue);
+  font-family: var(--headline_font);
+  font-size: calc(18px + 0.4em);
+  font-size: 4vw;
+  margin: auto;
+  margin-bottom: 0.1em;
+  text-align: center;
+  z-index: 10;
+
+  .small_header {
+    display: block;
+    font-size: 49%;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .big_header {
+    display: block;
+    font-weight: 900;
+    margin-bottom: 0.2em;
+  }
+}
+
+.rounded .short_form_block input {
+  border-radius: 0.3em;
+}
+
+
+/** Alternate palette - Add alt_palette class to section block to invoke it */
+
+.short_form_block.alt_palette {
+  .form_section {
+    background: var(--teal);
+  }
+
+  input[type='text'],
+  input[type='email'] {
+    background: var(--blue);
+    color: var(--white);
+
+    &:focus {
+      background: var(--yellow);
+      color: var(--blue);
+    }
+  }
+
+  button {
+    border-bottom-color: var(--yellow);
+    color: var(--white);
+
+    svg * {
+      stroke: var(--yellow);
+    }
+  }
+
+  .vol_sec_header {
+    color: var(--white);
+  }
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .short_form_block {
+    display: block;
+
+    .form_section {
+      padding: var(--standard_padding_vert) var(--standard_padding_horiz) !important;
+      width: 100%;
+    }
+
+    .photo_section {
+      height: 65vw;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 0.5em;
+    }
+
+  }
+
+  .vol_sec_header {
+    font-size: 10vw;
+
+    .big_header {
+      margin-bottom: 0.4em;
+    }
+
+
+  }
+
+}
+

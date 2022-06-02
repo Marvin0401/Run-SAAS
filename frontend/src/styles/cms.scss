@@ -1,0 +1,684 @@
+@charset "UTF-8";
+
+/** cms pull sdefinitions from other site style sheets, so some of these are overrides */
+
+@import "scss";
+@import "cms_colors";
+
+/** GENERAL CMS DEFINITIONS */
+
+html {
+    /** used as baseline for rem units */
+    font-size: 10px;
+}
+
+.cms {
+    // overflow: hidden;
+}
+
+.cms_top_nav_container {
+    background: var(--grey-1);
+    border-bottom: 1px solid var(--grey-3);
+    font-weight: 700;
+    height: 5rem;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+/** this is added just to wrap the palette bar with it's extra buttons at the bottom. Must be set to same width as main_control_bar */
+
+.main_control_bar_wrapper {
+    border-right: 1px solid var(--grey-3);
+    float: left;
+    height: calc(100vh - 5rem);
+    text-align: center;
+    width: var(--sidebar_control_width);
+    overscroll-behavior: contain;
+    position: fixed;
+    overflow-y: auto;
+}
+
+
+/** left side control bar - defines both the main bar and any extra vertical bars like palette editor */
+
+.main_control_bar {
+    border-right: 1px solid var(--grey-3);
+    float: left;
+    height: calc(100vh - 5rem);
+    text-align: center;
+    width: var(--sidebar_control_width);
+    overscroll-behavior: contain;
+    position: fixed;
+    overflow-y: auto;
+}
+
+
+/** wraps both the iframe and the control buttons on the bottom */
+
+.central_wrapper {
+    width: var(--preview_area_width);
+    position: relative;
+    margin-left: 300px;
+}
+
+.preview_area {
+    display: flex;
+    height: 100vh;
+    width: calc(100% + var(--sidebar_control_width));
+    // overflow-y: scroll;
+    font-family: var(--main_font), sans-serif;
+    * {
+        // font-family: galanogrotesque;
+        line-height: calc(0.95em + 10px);
+    }
+    &.mobile_view iframe {
+        border: 1px solid var(--grey-3);
+        display: block;
+        height: 812px;
+        margin: auto;
+        width: 375px;
+    }
+    nav {
+        font-family: var(--button_font);
+    }
+}
+
+.cms_bottom_nav_container {
+    background: var(--grey-1);
+    border-top: 1px solid var(--grey-3);
+    display: flex;
+    height: 4rem;
+    justify-content: space-between;
+    bottom: 0;
+    width: calc(100% - 300px);
+    position: fixed;
+    &.main-control-container {
+        left: 300px;
+    }
+    &.palette_editor {
+        position: fixed;
+        right: 0;
+        width: 300px;
+    }
+    &.color_editor_active {
+        width: calc(100% - 600px);
+    }
+}
+
+
+/** whole page */
+
+.cms_wrapper {
+    display: flex;
+    height: 100vh;
+    max-height: calc(100vh - 5rem);
+    margin-top: 5rem;
+}
+
+
+/** general sidebar popup stuff */
+
+.cms_popup_label {
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.cms_close_button {
+    position: absolute;
+    right: 0;
+    top: 2vw;
+    width: 2vw;
+    * {
+        stroke: var(--grey-5);
+        stroke-width: 30px;
+    }
+}
+
+.edit_Icon {
+    padding-top: 0.5em;
+}
+
+.bin_Icon {
+    margin-right: 0.45em;
+}
+
+
+/** HELP TIPS */
+
+.help_tip {
+    --size: 15px;
+    background: url("../assets/images/icon-tip.svg") no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    height: var(--size);
+    position: absolute;
+    right: 0;
+    top: 0;
+    top: 5px;
+    width: var(--size);
+    z-index: 2;
+    a {
+        color: var(--purple_dark);
+    }
+    .tip_text {
+        background: var(--grey-3);
+        border-radius: 8px;
+        color: var(--white_cms);
+        opacity: 0;
+        padding: 1em 1.5em;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 250px;
+    }
+    &:hover {
+        z-index: 10;
+        .tip_text {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}
+
+
+/** Mobile warning message - this automatically pops up if browser window is phone sized */
+
+.no_mobile_message {
+    align-items: center;
+    background: var(--purple_dark);
+    color: var(--white_cms);
+    display: none;
+    font-size: 10vw;
+    font-weight: 900;
+    height: 100%;
+    padding: 10vw;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 50;
+}
+
+
+/** NOTIFICATION POPUP - for any type of notification */
+
+.notification_popup_outer {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    font-family: galanogrotesque;
+    height: 100%;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
+.notification_popup,
+.white-bg-popup {
+    background: var(--purple_dark);
+    border-radius: 1em;
+    color: var(--white_cms);
+    font-family: galanogrotesque;
+    max-width: 500px;
+    padding: 3em 5em;
+    text-align: center;
+    &.wide-popup {
+        max-width: 900px;
+    }
+    .notification_heading {
+        color: var(--white_cms);
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 0.5em;
+    }
+    button {
+        background: var(--white_cms);
+        border-radius: 0.1em;
+        color: var(--purple_dark);
+        font-family: galanogrotesque;
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        margin-top: 0.5em;
+        padding: 0.3em 0.6em 0.2em;
+    }
+    button:disabled {
+        background: var(--grey-2);
+        cursor: default;
+    }
+    .notification_close_button {
+        cursor: pointer;
+        position: absolute;
+        right: 1em;
+        top: 0.9em;
+        .svg {
+            height: 1.5em;
+            width: 1.5em;
+            /** thickens stroke width as button is small - overriding svg default */
+            * {
+                stroke-width: 4px;
+            }
+        }
+    }
+    /** checkbox_wrapper is set in the mains forms css file and edited here */
+    .checkbox_wrapper {
+        @include fit_content();
+        margin: 1.2em auto 1em;
+        svg {
+            top: 0.1em;
+            rect {
+                fill: var(--white_cms);
+            }
+            polygon {
+                fill: var(--dark_purple);
+            }
+        }
+        label {
+            display: inline;
+            text-align: center;
+        }
+    }
+}
+
+.white-bg-popup {
+    background: var(--white_cms);
+    color: var(--purple_dark);
+    border-radius: unset;
+    .notification_heading {
+        color: var(--grey-5);
+    }
+    .popup_close_button svg line {
+        stroke: black;
+    }
+}
+
+
+/** PALETTE EDITOR */
+
+
+/** how the color swatch appears in the draggable color list */
+
+.palette_list_preview {
+    height: 1em;
+    margin-right: 0.5em;
+    top: 0.2em;
+    width: 1em;
+}
+
+
+/** overrides main_control_bar styles */
+
+.palette_bar {
+    right: 0;
+    .main_control_bar {
+        padding-bottom: 50px;
+        right: 0;
+    }
+    .main_control_bar_wrapper {
+        padding-bottom: 50px;
+        right: 0;
+    }
+}
+
+
+/** Defining how the rows in which editing colors on classes appears */
+
+.class_color_edit_row {
+    @extend .clearfix;
+    border-bottom: 1px solid var(--grey-3);
+    font-size: 80%;
+    margin-bottom: 0.4em;
+    padding-bottom: 0.3em;
+    text-align: left;
+    /** name of class */
+    .selected_class {
+        font-weight: 700;
+    }
+    /** attribute name (ie color or background-color) */
+    .attribute_name {
+        clear: both;
+        float: left;
+    }
+    /** currently selected color */
+    .active_swatch {
+        border: 1px solid var(--grey-2);
+        float: left;
+        height: 1em;
+        margin-left: 0.3em;
+        width: 1em;
+        &.swatch.unset {
+            margin-left: 0.3em;
+        }
+    }
+    /** swatch choice wrapper */
+    .swatch_choices {
+        float: right;
+    }
+    /** options to choose from */
+    .swatch {
+        border: 1px solid var(--grey-2);
+        cursor: pointer;
+        display: inline-block;
+        height: 1em;
+        margin-left: 0.05em;
+        width: 1em;
+        &.unset {
+            border: 1px solid var(--red);
+            overflow: hidden;
+            /** adds the red cross line */
+            &::after {
+                background: var(--red);
+                content: "";
+                height: 147%;
+                left: 48%;
+                position: absolute;
+                top: -3px;
+                transform: rotate(45deg);
+                width: 1px;
+            }
+        }
+    }
+}
+
+
+/** PALETTE MANAGER */
+
+
+/** sections that holds color preview on palette manager */
+
+.palette_manager_colors_preview {
+    display: flex;
+    height: 15px;
+    >div {
+        /** forces empty color swatch divs to fill space */
+        flex-grow: 1;
+    }
+}
+
+.color_category_selector_section {
+    align-content: space-between;
+    display: flex;
+    height: 15px;
+    width: 30px;
+    /**  this is overriding other values from checkbox css set in main _forms.scss file */
+    .checkbox_wrapper {
+        width: 33%;
+        height: 4px;
+        /** set both input and svg to same size to ensure accurate click spot */
+        svg {
+            height: 7px;
+            top: 0;
+            width: 7px;
+        }
+        input {
+            height: 10px;
+            top: 0;
+            width: 7px;
+            padding: 0px !important;
+            margin: 0px;
+        }
+        /** overides css applied to other icons on the bar */
+        .svg {
+            margin-left: 0;
+            pointer-events: none;
+            &:hover * {
+                fill: none;
+            }
+        }
+    }
+    >div {
+        &:first-child rect {
+            fill: #ffda00;
+        }
+        &:nth-child(2) rect {
+            fill: var(--orange);
+        }
+        &:nth-child(3) rect {
+            fill: var(--red);
+        }
+        &:nth-child(4) rect {
+            fill: var(--green);
+        }
+        &:nth-child(5) rect {
+            fill: var(--blue-standard);
+        }
+        &:nth-child(6) rect {
+            fill: var(--purple);
+        }
+    }
+}
+
+
+/** INLINE EDITOR */
+
+.editable {
+    min-height: 20px;
+    /** so that editable boxes don't completely collapsew without content. */
+    &:hover {
+        outline: dashed 1px var(--dotted_line_color);
+    }
+}
+
+.editor_open {
+    outline: dashed 1px var(--dotted_line_color);
+    .inline_editor {
+        display: flex;
+    }
+}
+
+.white_block {
+    .editable:hover {
+        outline-color: var(--dark_grey);
+    }
+    .editor_open {
+        outline-color: var(--dark_grey);
+    }
+}
+
+.inline_editor {
+    display: none;
+    left: 0;
+    position: absolute;
+    top: -30px;
+    .button {
+        align-content: center;
+        background: #7f7f90;
+        cursor: pointer;
+        display: flex;
+        height: 30px;
+        justify-content: center;
+        outline: 1px solid #989699;
+        width: 30px;
+        .svg {
+            max-height: 45%;
+            max-width: 40%;
+            * {
+                fill: var(--white_cms);
+            }
+        }
+        &:hover {
+            background: var(--light_grey);
+            .svg * {
+                fill: var(--dark_grey);
+            }
+        }
+        // img {
+        // }
+    }
+}
+
+.cms {
+    // nav.menu {
+    //   width: var(--preview_area_width);
+    //   left: var(--sidebar_control_width)
+    // }
+    nav.desktop {
+        // padding-left: var(--menu_padding_horiz_cms);
+        // padding-right: var(--menu_padding_horiz_cms);
+        width: calc(100% - var(--menu_padding_horiz) * 2);
+    }
+    // .open_button {
+    //   top: calc(5vw + var(--cms_top_nav_height));
+    // }
+    .react-datepicker {
+        transform: scale(1.5);
+    }
+    .react-datepicker__current-month {
+        font-size: 8px;
+    }
+}
+
+.record {
+    margin-bottom: 25px;
+    .record-item {
+        h5 {
+            margin: 0;
+        }
+        span {
+            overflow-wrap: break-word;
+        }
+        button {
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    }
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+input.is-loading {
+    padding-right: 30px !important;
+    &+span::before {
+        animation: button-loading-spinner 1s linear infinite;
+        border: 4px solid transparent;
+        border-radius: 50%;
+        border-top-color: var(--gray-3);
+        bottom: 0;
+        content: "";
+        height: 16px;
+        left: 0;
+        margin: auto;
+        margin-left: -28px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 16px;
+    }
+}
+
+pre {
+    margin: 0;
+}
+
+pre.whitespace-wrap,
+.child-whitespace-wrap pre {
+    white-space: pre-wrap;
+    font-family: inherit;
+}
+
+#preview-toast {
+    a {
+        text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    .cms {
+        .small_logo {
+            max-height: 9vw;
+            max-width: 9vw;
+        }
+        .main_tabs.underlined .tab {
+            margin-right: 1.5em;
+            font-size: calc(0.7vw);
+        }
+    }
+}
+
+@mixin mobile_mid_cms {
+    .open_button {
+        display: block;
+    }
+    .nav_wrapper_right {
+        display: none;
+    }
+    .desktop .tab {
+        display: none;
+    }
+}
+
+.cms .mobile_view {
+    @include mobile_mid_cms;
+}
+
+@media screen and (max-width: 1200px) {
+    .cms {
+        @include mobile_mid_cms;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .no_mobile_message {
+        display: flex;
+    }
+}
+
+// popover
+.popover {
+    transition: none;
+}
+
+.popover-img-container {
+    padding: 10px;
+    background-color: var(--purple_light);
+    // border: 5px solid var(--purple_dark);
+}
+
+.popover-arrow {
+    border-right-color: var(--purple_dark) !important;
+    transition: none;
+}
+
+.external-link {
+    background-color: transparent !important;
+    color: var(--grey-4) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    input {
+        background-color: var(--grey-1) !important;
+        line-height: 1.8em;
+        margin-left: 1em !important;
+        margin-right: 0 !important;
+        padding: 0 0.5em;
+        font-weight: 400 !important;
+        text-transform: none !important;
+        outline: none !important;
+        &:hover {
+            color: var(--grey-4) !important;
+        }
+    }
+}
+
+.input-center {
+    text-align: center;
+}
+
+.pricing-table  {
+    button {
+       color: var(--white_cms)
+    }
+}

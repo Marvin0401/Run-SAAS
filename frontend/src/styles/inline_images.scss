@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+/** INLINE IMAGES */
+
+.img-float-left {
+  float: left;
+  margin-bottom: 1em;
+  margin-right: 2.5em;
+  width: 40%;
+
+  &.rotate {
+    transform: rotate(-2deg);
+  }
+}
+
+.img-float-right {
+  float: right;
+  margin-bottom: 1em;
+  margin-left: 2em;
+  width: 40%;
+
+  &.rotate {
+    transform: rotate(2deg);
+  }
+}
+
+.img-center {
+  display: block !important;
+  margin: 3em auto;
+  max-width: 80%;
+}
+
+/** IMAGE DEFINITIONS */
+
+.rotate-right {
+  transform: rotate(2deg);
+}
+
+.rotate-left {
+  transform: rotate(-2deg);
+}
+
+.curvedshadow { /** Apply this class to a div wrapper around an image to get the polaroid effect */
+
+  display: inline-block;
+
+  img {
+    border: 0.55em var(--white) solid;
+    display: block;
+    width: 100%;
+  }
+
+  &::before {
+    background: url('../assets/images/curved_shadow.png');
+    background-size: 100% 100%;
+    content: '';
+    height: 107%;
+    left: -2%;
+    mix-blend-mode: multiply;
+    position: absolute;
+    top: -1.5%;
+    width: 104%;
+    z-index: 0;
+  }
+
+
+}
+
+@mixin mobile_small_inline_images {
+    .img-center,
+  .img-float-left,
+  .img-float-right {
+    float: none;
+    margin: 0.8em auto 1.6em;
+    max-width: none;
+    width: 100%;
+  }
+}
+
+.cms .mobile_view {
+  @include mobile_small_inline_images;
+}
+
+@media only screen and (max-width: 767px) {
+  @include mobile_small_inline_images;
+}

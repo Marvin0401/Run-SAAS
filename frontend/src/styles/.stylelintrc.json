@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "selector-max-compound-selectors": 5,
+    "selector-max-id": 1,
+    "max-nesting-depth": 5,
+    "scss/at-extend-no-missing-placeholder": null,
+    "scss/at-function-pattern": null,
+    "scss/at-mixin-pattern": null,
+    "scss/dollar-variable-pattern": null,
+    "selector-class-pattern": null,
+    "selector-no-qualifying-type": null
+  }
+}

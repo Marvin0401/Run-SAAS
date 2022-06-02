@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/** FULL WIDTH IMAGE */
+
+@mixin full_width_image($isMobile){
+  .full_width_image {
+    background: none center center;
+    background-size: cover;
+    height: previewConverter(46, $isMobile);
+
+    img {
+      width: 100%
+    }
+  }
+}
+
+@include full_width_image(false);
+
+.cms .mobile_view {
+  @include full_width_image(true);
+}

@@ -1,0 +1,218 @@
+@charset "UTF-8";
+
+/** ISSUES PAGE - DEFAULT BLOCK */
+
+.issues_list_wrapper {
+  margin-right: 20%;
+  width: 60%;
+
+  h2 {
+    color: var(--blue);
+  }
+}
+
+.issues_page_block {
+  background: var(--white);
+  padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+
+  /** options */
+  &.one_page_option {
+    .side_menu {
+      display: none;
+    }
+
+    .issues_list_wrapper {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .issues_item-page {
+      width: 70%;
+
+      button {
+        display: none;
+      }
+    }
+
+  }
+
+}
+
+.issues_page_content_wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .side_menu {
+    color: var(--blue);
+    left: -5%;
+    text-transform: uppercase;
+    width: 20%;
+  }
+
+  .side_menu_item {
+    border-bottom: 1px var(--teal) solid;
+    font-size: 80%;
+    font-weight: 700;
+    margin-bottom: 1.5em;
+    padding-bottom: 1.5em;
+    cursor: pointer;
+
+    a {
+      color: var(--blue);
+
+      &:hover {
+        color: var(--teal_text);
+      }
+    }
+
+    &:last-child {
+      border: 0;
+    }
+
+  }
+
+}
+
+
+.issues_item_wrapper {
+  margin-left: 5%;
+  margin-right: 10%;
+  width: 65%;
+
+  .eyebrow {
+    color: var(--blue);
+  }
+
+  h2 {
+    color: var(--teal);
+  }
+
+  h5 {
+    margin-bottom: 1em;
+  }
+}
+
+.issues_item-page {
+  background: var(--teal);
+  margin-bottom: var(--small_padding);
+  padding: 7%;
+  text-align: center;
+
+  .checkmark_icon {
+    display: block;
+    margin: 0 auto 1.1em;
+    width: 8%;
+
+    polygon {
+      fill: var(--yellow);
+    }
+  }
+
+  p {
+    color: var(--white);
+  }
+
+  button {
+    background: var(--yellow);
+    color: var(--blue);
+    margin-top: 1em;
+  }
+
+  .graphic_wrapper {
+    &::before {
+      background: var(--blue);
+      content: '';
+      height: 1px;
+      left: 10%;
+      position: absolute;
+      top: 50%;
+      width: 34%;
+    }
+
+    &::after {
+      background: var(--blue);
+      content: '';
+      height: 1px;
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      width: 34%;
+    }
+  }
+
+}
+
+
+.rounded .issues_item-page {
+  border-radius: 0.7em;
+}
+
+.half_rounded .issues_item-page {
+  border-bottom-left-radius: 0.7em;
+  border-bottom-right-radius: 0.7em;
+}
+
+
+
+
+@media only screen and (max-width: 1024px) {
+  .issues_page_content_wrapper {
+    .side_menu {
+      font-size: 80%;
+      left: 0;
+      text-align: center;
+      width: 25%;
+    }
+
+    .side_menu_item {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      width: fit-content;
+    }
+
+    &.list_page .side_menu {
+      display: none;
+    }
+  }
+
+  .issues_page_list_block .side_menu {
+    display: none; /** hide side menu on list page only at this size */
+  }
+
+  .issues_item_wrapper {
+    margin-left: 0;
+    margin-right: 0;
+    width: 68%;
+  }
+
+  .issues_list_wrapper {
+    margin-left: auto;
+    ;
+    margin-right: auto;
+    width: 80%;
+  }
+
+}
+
+
+
+@media only screen and (max-width: 767px) {
+  .issues_page_content_wrapper {
+    .side_menu {
+      margin-top: var(--small_padding);
+      order: 2;
+    }
+
+    .side_menu_item {
+      font-size: 100%;
+    }
+  }
+
+  .issues_item_wrapper h2 {
+    text-align: center;
+  }
+
+}
+
+

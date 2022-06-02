@@ -1,0 +1,1708 @@
+@charset "UTF-8";
+
+/** cms pull sdefinitions from other site style sheets, so some of these are overrides */
+
+@import "scss";
+@import "cms_colors";
+
+/** GENERAL CMS DEFINITIONS */
+
+html {
+  /** used as baseline for rem units */
+  font-size: 10px;
+}
+
+.cms {
+  overflow: hidden;
+}
+
+.cms_top_nav,
+.main_control_bar,
+.full_screen_control_bar {
+  background: var(--white);
+  color: var(--grey-4);
+  font-size: 1.3rem;
+  overflow: hidden;
+
+  .allow_overflow {
+    overflow: auto;
+  }
+
+  * {
+    font-family: galanogrotesque;
+    line-height: 1.3;
+  }
+
+  h1 {
+    color: var(--grey-5);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin-bottom: 2em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  h1.big {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    margin-bottom: 1em;
+    text-transform: none;
+  }
+
+  h2 {
+    color: var(--grey-5);
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.8em;
+    width: 100%;
+  }
+
+  h3 {
+    color: var(--grey-5);
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    color: var(--grey-4);
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  hr.big {
+    border-top: 1px solid var(--grey-4);
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  hr.big_grey {
+    border-top: 1px solid var(--grey-2);
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  hr.small {
+    border-top: 1px solid var(--grey-2);
+    margin: 1.5rem auto;
+    width: 60%;
+  }
+
+  /** spacers */
+  hr.spacer {
+    height: 2em;
+  }
+
+  hr.spacer_small {
+    border: 0;
+    height: 1em;
+  }
+
+  /** place this where someone is dragging an item between two other items */
+  hr.drag_hover {
+    border-top: 1px solid var(--purple_dark);
+    margin: 0.75rem auto;
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    background: var(--grey-1);
+    border-radius: 0.2em;
+    font-size: inherit;
+    font-weight: inherit;
+    padding: 0.1em 0.3em;
+
+    &.border_none {
+      border-width: 0;
+    }
+    &.simple-text-editor {
+      background: transparent;
+      height: auto;
+      border-radius: 0;
+    }
+  }
+
+  .radio_wrapper {
+    align-items: center;
+    display: flex;
+
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+
+    svg {
+      top: auto;
+    }
+
+    .svg {
+      position: absolute;
+      height: 100%;
+    }
+
+    label {
+      padding-left: 1.8rem;
+    }
+
+    .outer_circle {
+      fill: var(--grey-4);
+    }
+
+    input[type="radio"]:checked ~ .svg .inner_circle {
+      fill: var(--grey-1);
+    }
+  }
+
+  .select_wrapper,
+  select {
+    font-size: inherit;
+  }
+
+  select {
+    background: var(--grey-2);
+    font-weight: 600;
+  }
+
+  .text_link {
+    color: var(--purple_dark);
+    font-size: 85%;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+/** USER CONTROL PANEL SECTIONS & DEFINITIONS */
+
+div.cms {
+  .full_screen_control_bar {
+    height: calc(100% - 5rem);
+    overflow: auto;
+    padding: 3vw 6vw;
+    width: 100%;
+
+    /** this gets added as an inner div to shrink page width where necessary */
+    &-inner_wrapper {
+      margin: auto;
+      max-width: 900px;
+    }
+
+    /** take advantage of the additional space for bigger text */
+    input,
+    textarea,
+    label {
+      font-size: 16px;
+    }
+  }
+}
+
+/** this is added just to wrap the palette bar with it's extra buttons at the bottom. Must be set to same width as main_control_bar */
+.main_control_bar_wrapper {
+  height: calc(100% - 5rem);
+  width: 30rem;
+}
+
+/** left side control bar - defines both the main bar and any extra vertical bars like palette editor */
+.main_control_bar {
+  border-right: 1px solid var(--grey-3);
+  float: left;
+  height: calc(100% - 5rem);
+  overflow: auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  width: var(--sidebar_control_width);
+
+  /** generic button defintion for control bar */
+  button {
+    background: var(--purple_dark);
+    border-radius: 0.2em;
+    color: var(--white);
+    display: block;
+    font-size: 80%;
+    letter-spacing: 0.1em;
+    margin-left: auto;
+    padding: 0.2em 0.6em;
+  }
+
+  /** visual effect to create subtle gradient on bar */
+  &::before {
+    @include scrimGradient(
+      $transparency: 1,
+      $startPoint: 0,
+      $startColor: #ededed,
+      $direction: "to left"
+    );
+    content: "";
+    height: 100%;
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35%;
+  }
+}
+
+/** wraps both the iframe and the control buttons on the bottom */
+.central_wrapper {
+  width: var(--preview_area_width);
+  position: relative;
+}
+
+.preview_area {
+  display: flex;
+  height: calc(100% - 5rem);
+  width: calc(100% + var(--sidebar_control_width));
+  overflow-y: scroll;
+
+  * {
+    font-family: galanogrotesque;
+    line-height: calc(0.95em + 10px);
+  }
+
+  &.mobile_view iframe {
+    border: 1px solid var(--grey-3);
+    display: block;
+    height: 812px;
+    margin: auto;
+    width: 375px;
+  }
+
+  nav {
+    font-family: var(--button_font);
+  }
+}
+
+.cms_bottom_nav {
+  background: var(--grey-1);
+  border-top: 1px solid var(--grey-3);
+  display: flex;
+  height: 4rem;
+  justify-content: space-between;
+  padding: 0.5rem;
+  z-index: 12;
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - var(--sidebar_control_width));
+  right: 0;
+
+  button {
+    background: var(--grey-4);
+    border-radius: 0.3rem;
+    color: var(--white);
+    height: 100%;
+    letter-spacing: 0.2rem;
+    margin-left: 0.3rem;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    font-family: galanogrotesque;
+
+    &:hover {
+      background: var(--purple_dark);
+    }
+  }
+}
+
+.bottom_nav_left {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  padding-left: 1.5rem;
+
+  .view_icon {
+    cursor: pointer;
+    height: 70%;
+    margin-right: 1rem;
+
+    &:hover {
+      * {
+        fill: var(--purple_dark);
+      }
+    }
+  }
+}
+
+/** wraps big control buttons (save, erase, publish, manage) */
+.bottom_nav_right {
+  /** right align the buttons */
+  margin-left: auto;
+}
+
+/** CMS WRAPPERS & GENERAL */
+
+/** whole page */
+.cms_wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/** general sidebar popup stuff */
+.cms_popup_label {
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.cms_close_button {
+  position: absolute;
+  right: 0;
+  top: 2vw;
+  width: 2vw;
+
+  * {
+    stroke: var(--grey-5);
+    stroke-width: 30px;
+  }
+}
+
+.add_button_wrapper {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+
+  .add_button {
+    margin-left: 1em;
+    transform: rotate(0deg);
+    transition: 0.3s;
+  }
+
+  &:hover {
+    .add_button {
+      transform: rotate(90deg);
+
+      * {
+        stroke: var(--grey-5);
+      }
+    }
+  }
+}
+
+/** wraps options with margins */
+.option_wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  &.left {
+    justify-content: flex-start;
+  }
+  &.with_logo {
+    top: -3rem;
+    margin: 0 -2rem;
+    &.yellow {
+      background: var(--yellow);
+    }
+
+    &.teal {
+      background: var(--teal);
+    }
+
+    &.blue {
+      background: var(--blue);
+    }
+
+    &.white {
+      background: var(--white);
+    }
+    .big_logo {
+      margin: 1rem auto;
+    }
+  }
+}
+
+/** icon selection wrapper options */
+.icon_row {
+  .svg {
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+
+    &:hover,
+    &.selected {
+      .dark_shape {
+        cursor: pointer;
+        fill: var(--purple_dark) !important;
+        stop-color: var(--purple_dark) !important;
+      }
+
+      .light_shape {
+        cursor: pointer;
+        fill: var(--purple_light) !important;
+        stop-color: var(--purple_light) !important;
+      }
+    }
+  }
+
+  &.short_icons .svg {
+    max-height: 1.2em;
+  }
+
+  &.tall_icons .svg {
+    max-height: 2em;
+  }
+
+  &.two .svg {
+    max-width: 40%;
+  }
+
+  &.three .svg {
+    max-width: 25%;
+  }
+}
+
+/** Intro Block config styles */
+.home_intro_layout_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+
+  & .svg {
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+    cursor: pointer;
+    &:hover,
+    &.selected {
+      .cls-1 {
+        fill: var(--purple_dark) !important;
+        stop-color: var(--purple_dark) !important;
+      }
+    }
+  }
+
+  &.three .svg {
+    max-width: 25%;
+    max-height: 2em;
+  }
+  &.three a {
+    max-width: 25%;
+  }
+}
+
+/** to put label on top */
+.option_top_label {
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+
+/** to put label on side */
+.option_side_label {
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+/** for wrapping a one line input and label */
+.input_wrapper {
+  align-items: center;
+  display: flex;
+
+  label {
+    margin-right: 0.5em;
+    max-width: 50%;
+  }
+
+  input {
+    flex-grow: 1;
+    width: 40%;
+  }
+}
+
+/** category label with dropdowns below */
+.category_label {
+  align-items: center;
+  background: var(--grey-1);
+  border-radius: 0.3em;
+  cursor: pointer;
+  display: flex;
+  font-weight: 700;
+  justify-content: left;
+  margin-bottom: 0.5em;
+  padding: 0.5em 0.7em;
+
+  .drop_arrow svg {
+    height: 0.8em;
+    margin-left: 0.5em;
+  }
+
+  &:hover {
+    .drop_arrow svg {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.category_list {
+  display: none;
+}
+
+/** SELECTION TOOLS - buttons, toggles, swatches, image upload */
+
+/** image upload stuff */
+
+.img_select_wrapper {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  width: 45%;
+  label {
+    text-align: center;
+  }
+}
+
+.img_preview {
+  align-content: center;
+  background-color: var(--grey-1);
+  border-radius: 0.2em;
+  cursor: pointer;
+  display: flex;
+  height: 2.5em;
+  justify-content: center;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  width: 2.5em;
+
+  svg {
+    vertical-align: middle;
+  }
+
+  .upload_icon {
+    width: 60%;
+  }
+
+  &:hover {
+    background: var(--purple_dark);
+
+    .upload_icon * {
+      fill: var(--white);
+      stroke: var(--white);
+    }
+  }
+}
+
+/** toggle wrapper */
+.option_wrapper .toggle_button {
+  background: var(--grey-2);
+  border-radius: 0.65rem;
+  cursor: pointer;
+  display: inline-block;
+  height: 1.3rem;
+  margin-bottom: 0;
+  margin-right: 1rem;
+  width: 3.5rem;
+
+  &::after {
+    background: var(--grey-4);
+    border-radius: 50%;
+    content: "";
+    height: 1.3rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: left 0.25s ease;
+    width: 1.3rem;
+  }
+
+  &:checked {
+    &::after {
+      left: calc(100% - 1.3rem);
+    }
+  }
+}
+
+/** slider wrapper */
+.slider_track {
+  background: var(--grey-2);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  height: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 12rem;
+}
+.slider_thumb {
+  background: var(--grey-4);
+  border-radius: 50%;
+  height: 1.5rem;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1.5rem;
+
+  &::after {
+    background: var(--grey-4);
+    border-radius: 50%;
+    content: "";
+    height: 1.5rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1.5rem;
+  }
+}
+
+.slider_label {
+  margin-bottom: 0.5em;
+}
+
+/** swatch selection */
+.swatch_option {
+  border: 1px solid var(--grey-2);
+  height: 2rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  width: 2rem;
+
+  &.yellow {
+    background: var(--yellow);
+  }
+
+  &.teal {
+    background: var(--teal);
+  }
+
+  &.blue {
+    background: var(--blue);
+  }
+
+  &.white {
+    background: var(--white);
+  }
+
+  &:hover,
+  &.selected {
+    &::after {
+      border: 1px solid var(--grey-5);
+      content: "";
+      height: calc(100% - 2px);
+      left: 0;
+      outline: 1px solid var(--grey-1);
+      outline-offset: -2px;
+      position: absolute;
+      top: 0;
+      width: calc(100% - 2px);
+    }
+  }
+}
+
+/** DESIGN SETTINGS */
+
+/** palette selection */
+.palette_choice {
+  cursor: pointer;
+  display: flex;
+  height: 2rem;
+  justify-content: stretch;
+  margin-bottom: 0.5rem;
+  width: 100%;
+
+  &.selected {
+    /** stops hover effects on selected palette */
+    cursor: auto;
+
+    &:hover::after {
+      content: unset;
+    }
+  }
+
+  div {
+    flex-grow: 1;
+  }
+
+  .minor_color {
+    flex-grow: 0.5;
+  }
+
+  &:hover {
+    &::after {
+      border: 1px solid var(--grey-5);
+      content: "";
+      height: calc(100% - 2px);
+      left: 0;
+      outline: 1px solid var(--grey-1);
+      outline-offset: -2px;
+      position: absolute;
+      top: 0;
+      width: calc(100% - 2px);
+    }
+  }
+}
+
+/** font selection */
+.font_dropdown {
+  background: var(--grey-2);
+  border-radius: 0.3rem;
+  color: var(--grey-5);
+  font-size: 1.7rem;
+  padding: 0.4em 1em;
+  width: 100%;
+
+  .selected {
+    pointer-events: none;
+  }
+
+  &:hover .choices {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &.button_font {
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  &.headline {
+    font-size: 2.5rem;
+    font-weight: 900;
+
+    > div {
+      padding-bottom: 0.1em;
+      padding-top: 0.1em;
+    }
+  }
+
+  .choices {
+    background: var(--grey-2);
+    left: 0;
+    opacity: 0;
+    padding-bottom: 0.2em;
+    pointer-events: none;
+    position: absolute;
+    top: 2em;
+    width: 100%;
+    z-index: 3;
+
+    > div {
+      border-top: 1px var(--white) solid;
+      padding-bottom: 0.4em;
+      padding-top: 0.4em;
+
+      &:hover {
+        color: var(--white);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/** BLOCKS PAGE */
+
+/** popup with blocks */
+.block_popup {
+  background: rgba($grey-5, 0.7);
+  display: none;
+  left: 0;
+  min-height: 100%;
+  padding: inherit;
+  position: absolute;
+  top: 0;
+  z-index: 4;
+
+  &.visible {
+    display: block;
+  }
+
+  > div {
+    background: var(--white);
+    box-shadow: 0 0 33px -11px rgba(0, 0, 0, 0.67);
+    display: flex;
+    padding: 3rem 1rem;
+  }
+
+  .block_option {
+    cursor: pointer;
+    font-size: 80%;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    width: 50%;
+
+    .svg {
+      display: block;
+      margin-bottom: 0.3em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &:hover {
+      color: var(--dark_purple);
+
+      * {
+        .dark_shape {
+          fill: var(--purple_dark);
+        }
+
+        .light_shape {
+          fill: var(--purple_light);
+        }
+      }
+    }
+  }
+}
+
+.block_config {
+  background: var(--white);
+  display: flex;
+  padding: 3rem 1rem;
+
+  .block_option {
+    cursor: pointer;
+    font-size: 80%;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 50%;
+
+    .svg {
+      display: block;
+      margin-bottom: 0.3em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .none {
+      width: 87.08px;
+      height: 48.76px;
+      background: var(--white);
+      border: 1px solid var(--grey-2);
+    }
+
+    &:hover, &.selected {
+      color: var(--purple_dark);
+
+      * {
+        .dark_shape {
+          fill: var(--purple_dark);
+        }
+
+        .light_shape {
+          fill: var(--purple_light);
+        }
+      }
+
+      & .none {
+        border-color: var(--purple_dark);
+      }
+    }
+  }
+}
+
+/** TOP NAV */
+
+.cms_top_nav {
+  background: var(--grey-1);
+  border-bottom: 1px solid var(--grey-3);
+  font-weight: 600;
+  height: 5rem;
+  width: 100%;
+
+  .run_logo {
+    align-content: center;
+    background: var(--grey-4);
+    display: inline-flex;
+    float: left;
+    height: 5rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+
+    img {
+      width: 4rem;
+    }
+  }
+
+  .left_nav {
+    float: left;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .right_nav {
+    float: right;
+    padding-right: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .svg svg,
+  img.svg {
+    height: 1.3rem;
+    margin-right: 0.2rem;
+    position: relative;
+    top: 0.2rem;
+    width: 2rem;
+  }
+
+  .tab {
+    cursor: pointer;
+    display: inline;
+    margin-right: 1.5rem;
+
+    &.page_name {
+      color: var(--grey-3);
+      margin-right: 0.8em;
+      text-transform: uppercase;
+
+      img {
+        height: 1em;
+        margin-left: 1em;
+        top: 0.1em;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: var(--purple_dark);
+
+      .svg * {
+        fill: var(--purple_dark);
+      }
+    }
+  }
+}
+
+/** FULL WIDTH OPTIONS SCREEN - defaults are set in side panel, so some of these are overrides of that for full width */
+
+/** this class goes on each row */
+.full_row_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+
+  > p {
+    padding-right: 50%;
+    width: 100%;
+  }
+
+  /** add class for a border below it, in order to create a "section" */
+  &.border {
+    border-bottom: 1px solid var(--grey-3);
+    padding-bottom: 2em;
+  }
+
+  /** adding quarters, thirds, etc. controls how much columns across */
+  &.quarters .full_option_wrapper {
+    width: calc(25% - 1vw);
+  }
+
+  &.thirds .full_option_wrapper {
+    width: calc(33% - 1vw);
+  }
+
+  &.halves .full_option_wrapper {
+    width: calc(50% - 1vw);
+  }
+
+  &.sixths .full_option_wrapper {
+    width: calc(16.5% - 1vw);
+  }
+
+  .img_preview {
+    height: 4.5em;
+    width: 4.5em;
+  }
+
+  .option_wrapper {
+    justify-content: left;
+  }
+
+  .slider_label {
+    margin-bottom: 0;
+    margin-right: 1em;
+  }
+
+  .slider_button {
+    margin: 0;
+  }
+
+  &.full {
+    .full_option_wrapper {
+      flex-grow: 1;
+    }
+  }
+
+  h1.full {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    margin-bottom: 0.5em;
+    text-align: left;
+    text-transform: none;
+    width: 100%;
+  }
+
+  /** the following are general definitions for how these elements appear throughout full width settings screens */
+  input,
+  textarea {
+    color: var(--grey-4);
+    max-height: 90px;
+    padding: 0.3em 0.6em !important;
+  }
+
+  input[type="submit"] {
+    background: var(--purple_dark);
+    color: var(--white);
+    float: right;
+    font-family: galanogrotesque;
+    font-size: 80%;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+  }
+}
+
+/** this class gets applied to each column */
+.full_option_wrapper {
+  /** if full width */
+  &.full_width {
+    width: 100% !important;
+  }
+}
+
+.full_icons_wrapper {
+  .svg {
+    margin-right: 0.3em;
+    max-height: 1.5em;
+
+    &.selected,
+    &:hover {
+      .dark_shape {
+        fill: var(--purple_dark);
+      }
+    }
+  }
+}
+
+/** REARRANGABLE LISTS */
+
+.cms_controls_list {
+  div.drag.subpage {
+    margin-left: 3em;
+  }
+
+  ul.drop.subpage {
+    margin-left: 3em;
+  }
+
+  li {
+    // background: var(--grey-1);
+    border-radius: 0.3em;
+    display: block;
+    font-size: 80%;
+    margin-bottom: 0.5em;
+    overflow: hidden;
+
+    &.subpage {
+      margin-left: 3em;
+
+      &::after {
+        background-image: url("../images/cms/L_arrow_thick.svg")
+          no-repeat;
+        background-position: 0 0;
+        background-size: 2em;
+        content: "";
+        left: 0;
+        position: absolute;
+        top: 0;
+      }
+    }
+
+    .row_wrapper {
+      align-items: center;
+      background: var(--grey-1);
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8em 1.2em;
+
+      &.is-active {
+        background: var(--purple_dark);
+        color: var(--white);
+
+        input {
+          color: var(--white);
+        }
+
+        * {
+          fill: var(--white);
+          stroke: var(--white) !important;
+        }
+      }
+    }
+
+    .add_on_field {
+      background: var(--grey-4);
+      color: var(--white);
+      width: 100%;
+
+      &.row_wrapper {
+        padding-bottom: 1em;
+        padding-top: 1em;
+      }
+
+      input {
+        color: var(--white);
+        letter-spacing: 0;
+        margin-left: 1em;
+        margin-right: 0;
+        text-transform: none;
+      }
+    }
+
+    input, .input-like {
+      background: transparent;
+      color: var(--grey-4);
+      flex-grow: 1;
+      font-size: 10px !important;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      margin-bottom: 0;
+      margin-right: 1em;
+      text-transform: uppercase;
+      width: 20%;
+      text-align: left;
+    }
+
+    input {
+      &:hover {
+        background: var(--grey-3);
+        color: var(--white);
+      }
+
+      &:focus {
+        outline: 1px dashed var(--grey-4);
+      }
+    }
+
+    /** controls the icons inside the bar */
+    .svg {
+      cursor: pointer;
+      height: 1.3em;
+
+      &.selected {
+        * {
+          fill: var(--grey-5);
+        }
+      }
+
+      svg {
+        height: 1.3em;
+      }
+    }
+
+    .svg:not(.overrideHover):hover * {
+      fill: var(--purple_dark) !important;
+    }
+
+    .drag_icon {
+      &:hover {
+        cursor: grab;
+      }
+    }
+
+    .drag_icon,
+    .closeIcon {
+      * {
+        stroke: var(--grey-4);
+        stroke-width: 9px;
+      }
+    }
+
+    .closeIcon {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
+
+/** HELP TIPS */
+
+.help_tip {
+  --size: 15px;
+  background: url("../images/icon-tip.svg") no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  height: var(--size);
+  position: absolute;
+  right: 0;
+  top: 0;
+  top: 5px;
+  width: var(--size);
+  z-index: 2;
+
+  a {
+    color: var(--purple_dark);
+  }
+
+  .tip_text {
+    background: var(--grey-3);
+    border-radius: 8px;
+    color: var(--white);
+    opacity: 0;
+    padding: 1em 1.5em;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 250px;
+  }
+
+  &:hover {
+    z-index: 10;
+
+    .tip_text {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+/** Mobile warning message - this automatically pops up if browser window is phone sized */
+
+.no_mobile_message {
+  align-items: center;
+  background: var(--purple_dark);
+  color: var(--white);
+  display: none;
+  font-size: 10vw;
+  font-weight: 900;
+  height: 100%;
+  padding: 10vw;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 50;
+}
+
+/** NOTIFICATION POPUP - for any type of notification */
+
+.notification_popup_outer {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  font-family: galanogrotesque;
+  height: 100%;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.notification_popup {
+  background: var(--purple_dark);
+  border-radius: 1em;
+  color: var(--white);
+  font-family: galanogrotesque;
+  max-width: 500px;
+  padding: 3em 5em;
+  text-align: center;
+
+  .notification_heading {
+    color: var(--white);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+  }
+
+  button {
+    background: var(--white);
+    border-radius: 0.1em;
+    color: var(--purple_dark);
+    font-family: galanogrotesque;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    margin-top: 0.5em;
+    padding: 0.3em 0.6em 0.2em;
+  }
+
+  .notification_close_button {
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+    top: 0.9em;
+
+    .svg {
+      height: 1.5em;
+      width: 1.5em;
+
+      /** thickens stroke width as button is small - overriding svg default */
+      * {
+        stroke-width: 4px;
+      }
+    }
+  }
+
+  /** checkbox_wrapper is set in the mains forms css file and edited here */
+  .checkbox_wrapper {
+    @include fit_content();
+    margin: 1.2em auto 1em;
+
+    svg {
+      top: 0.1em;
+
+      rect {
+        fill: var(--white);
+      }
+
+      polygon {
+        fill: var(--dark_purple);
+      }
+    }
+
+    label {
+      display: inline;
+      text-align: center;
+    }
+  }
+}
+
+/** PALETTE EDITOR */
+
+/** how the color swatch appears in the draggable color list */
+.palette_list_preview {
+  height: 1em;
+  margin-right: 0.5em;
+  top: 0.2em;
+  width: 1em;
+}
+
+/** overrides main_control_bar styles */
+.palette_bar {
+  height: calc(100% - 4rem);
+}
+
+/** Defining how the rows in which editing colors on classes appears */
+.class_color_edit_row {
+  @extend .clearfix;
+  border-bottom: 1px solid var(--grey-3);
+  font-size: 80%;
+  margin-bottom: 0.4em;
+  padding-bottom: 0.3em;
+  text-align: left;
+
+  /** name of class */
+  .selected_class {
+    font-weight: 700;
+  }
+
+  /** attribute name (ie color or background-color) */
+  .attribute_name {
+    clear: both;
+    float: left;
+  }
+
+  /** currently selected color */
+  .active_swatch {
+    border: 1px solid var(--grey-2);
+    float: left;
+    height: 1em;
+    margin-left: 0.3em;
+    width: 1em;
+  }
+
+  /** swatch choice wrapper */
+  .swatch_choices {
+    float: right;
+  }
+
+  /** options to choose from */
+  .swatch {
+    border: 1px solid var(--grey-2);
+    cursor: pointer;
+    display: inline-block;
+    height: 1em;
+    margin-left: 0.05em;
+    width: 1em;
+
+    &.unset {
+      border: 1px solid var(--red);
+      overflow: hidden;
+
+      /** adds the red cross line */
+      &::after {
+        background: var(--red);
+        content: "";
+        height: 147%;
+        left: 48%;
+        position: absolute;
+        top: -3px;
+        transform: rotate(45deg);
+        width: 1px;
+      }
+    }
+  }
+}
+
+/** PALETTE MANAGER */
+
+/** sections that holds color preview on palette manager */
+.palette_manager_colors_preview {
+  display: flex;
+  height: 15px;
+
+  > div {
+    /** forces empty color swatch divs to fill space */
+    flex-grow: 1;
+  }
+}
+
+.color_category_selector_section {
+  align-content: space-between;
+  display: flex;
+  height: 15px;
+  width: 27px;
+
+  /**  this is overriding other values from checkbox css set in main _forms.scss file */
+  .checkbox_wrapper {
+    width: 33%;
+    height: 0;
+    /** set both input and svg to same size to ensure accurate click spot */
+    input,
+    svg {
+      height: 7px;
+      top: 0;
+      width: 7px;
+    }
+
+    /** overides css applied to other icons on the bar */
+    .svg {
+      margin-left: 0;
+      pointer-events: none;
+
+      &:hover * {
+        fill: none;
+      }
+    }
+  }
+
+  > div {
+    &:first-child rect {
+      fill: #ffda00;
+    }
+
+    &:nth-child(2) rect {
+      fill: var(--orange);
+    }
+
+    &:nth-child(3) rect {
+      fill: var(--red);
+    }
+
+    &:nth-child(4) rect {
+      fill: var(--green);
+    }
+
+    &:nth-child(5) rect {
+      fill: var(--blue-standard);
+    }
+
+    &:nth-child(6) rect {
+      fill: var(--purple);
+    }
+  }
+}
+
+/** INLINE EDITOR */
+.editable {
+  min-height: 20px; /** so that editable boxes don't completely collapsew without content. */
+
+  &:hover {
+    outline: dashed 1px var(--dotted_line_color);
+  }
+}
+
+.editor_open {
+  outline: dashed 1px var(--dotted_line_color);
+
+  .inline_editor {
+    display: flex;
+  }
+}
+
+.white_block {
+  .editable:hover {
+    outline-color: var(--dark_grey);
+  }
+
+  .editor_open {
+    outline-color: var(--dark_grey);
+  }
+}
+
+.inline_editor {
+  display: none;
+  left: 0;
+  position: absolute;
+  top: -30px;
+
+  .button {
+    align-content: center;
+    background: #7f7f90;
+    cursor: pointer;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    outline: 1px solid #989699;
+    width: 30px;
+
+    .svg {
+      max-height: 45%;
+      max-width: 40%;
+
+      * {
+        fill: var(--white);
+      }
+    }
+
+    &:hover {
+      background: var(--light_grey);
+
+      .svg * {
+        fill: var(--dark_grey);
+      }
+    }
+
+    // img {
+
+    // }
+  }
+}
+
+.drop.cms_controls_list {
+  min-height: 3rem;
+}
+
+.drag {
+  opacity: 1;
+}
+
+.drag_hover li .row_wrapper {
+  background: var(--purple_dark);
+  color: var(--white);
+
+  input {
+    color: var(--white);
+  }
+
+  * {
+    fill: var(--white);
+    stroke: var(--white) !important;
+  }
+}
+
+.drop.empty-drop-container.drag_hover {
+  padding-bottom: 2.5rem;
+  &:before {
+    content: " ";
+    position: absolute;
+    border-top: 1px solid var(--purple_dark);
+    width: 100%;
+    left: 0;
+    padding: 0;
+    top: calc(50% - 1px);
+  }
+}
+
+.hover-top {
+  border-top: 1px solid var(--purple_dark);
+}
+
+.hover-bottom {
+  border-bottom: 1px solid var(--purple_dark);
+}
+
+.empty-drop-container {
+  padding-bottom: 10px;
+
+  // &:hover {
+  // 	background-color: red;
+  // 	padding-bottom: 20px;
+  // }
+}
+
+.endorsement {
+  .option_group {
+    margin-left: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+.cms {
+  // nav.menu {
+  //   width: var(--preview_area_width);
+  //   left: var(--sidebar_control_width)
+  // }
+
+  nav.desktop {
+    // padding-left: var(--menu_padding_horiz_cms);
+    // padding-right: var(--menu_padding_horiz_cms);
+    width: calc(100% - var(--menu_padding_horiz) * 2);
+  }
+
+  // .open_button {
+  //   top: calc(5vw + var(--cms_top_nav_height));
+  // }
+}
+
+@media screen and (max-width: 1360px) {
+  .cms {
+    .small_logo {
+      max-height: 9vw;
+      max-width: 9vw;
+    }
+    .main_tabs.underlined .tab {
+      margin-right: 1.5em;
+      font-size: calc(0.7vw);
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .cms {
+    .open_button {
+      display: block;
+    }
+
+    .nav_wrapper_right {
+      display: none;
+    }
+
+    .desktop .tab {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .no_mobile_message {
+    display: flex;
+  }
+}
+
+// popover
+
+.popover {
+  transition: none;
+}
+
+.popover-img-container {
+  padding: 10px;
+  background-color: var(--purple_light);
+  // border: 5px solid var(--purple_dark);
+}
+
+.popover-arrow {
+  border-right-color: var(--purple_dark) !important;
+  transition: none;
+}

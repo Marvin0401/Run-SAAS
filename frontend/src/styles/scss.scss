@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+
+$blue: #001f45;
+$yellow: #ffda31;
+$teal: #3eab93;
+$teal_text: #258872;
+$white: #fff;
+$red: #f00;
+$mobile_view_width: 480;
+
+.clearfix {
+  &::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+}
+
+@function previewConverter($val, $flag) {
+  @if $flag {
+    @return $mobile_view_width * ($val / 100) * 1px;
+  } @else {
+    @return $val * 1vw;
+  }
+}
+
+@mixin fit_content() {
+  width: fit-content;
+  width: intrinsic;
+  width: fit-content;
+  width: fit-content;
+}
+
+/** GRADIENT MIXINS */
+
+@mixin scrimGradient($transparency, $startPoint, $startColor, $direction) {
+
+  $scrimCoordinates: (
+    0: 1,
+    8.5: 0.966,
+    15.9: 0.92,
+    22.6: 0.864,
+    28.6: 0.8,
+    34.1: 0.73,
+    39.4: 0.654,
+    44.5: 0.574,
+    49.6: 0.493,
+    54.9: 0.411,
+    60.5: 0.33,
+    66.7: 0.252,
+    73.6: 0.179,
+    81.3: 0.111,
+    90.1: 0.051,
+    100: 0
+  );
+
+  $hue: hue($startColor);
+  $saturation: saturation($startColor);
+  $lightness: lightness($startColor);
+  $stops: ();
+
+  @each $colorStop, $alphaValue in $scrimCoordinates {
+    $colorStop: (100 - $startPoint) * ($colorStop/100) + $startPoint;
+    $alphaValue: $alphaValue * $transparency;
+    $stop: hsla($hue, $saturation, $lightness, $alphaValue) percentage($colorStop/100);
+    $stops: append($stops, $stop, comma);
+  }
+
+  background: linear-gradient(unquote($direction), $stops);
+
+}
+
+
+@mixin linearGradient($transparency, $startPoint, $startColor, $direction) {
+
+  $hue: hue($startColor);
+  $saturation: saturation($startColor);
+  $lightness: lightness($startColor);
+
+  background: linear-gradient(unquote($direction), hsla($hue, $saturation, $lightness, 1) $startPoint, hsla($hue, $saturation, $lightness, 0) 100%);
+  mix-blend-mode: multiply;
+  opacity: $transparency;
+
+}
+
+
+@function darkenColor($color) {
+  @return darken( $color, 30% );
+}

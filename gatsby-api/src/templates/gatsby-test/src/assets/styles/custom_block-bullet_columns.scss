@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/** BULLETS GRID */
+
+.bullet_columns_block {
+  background: var(--white);
+  padding: var(--standard_padding_vert) var(--standard_padding_horiz);
+
+  h2 {
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    break-inside: avoid;
+    margin-bottom: 1em;
+    padding-left: 3.9em;
+
+    .svg {
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 2.8em;
+
+      polygon {
+        fill: var(--teal);
+      }
+
+      path {
+        fill: var(--blue);
+      }
+    }
+
+  }
+
+}
+
+
+.bullet_columns_inner {
+  column-count: 2;
+  column-gap: 8%;
+}
+
+.bullets_intro_p {
+  margin: 0 auto 3em;
+  max-width: 800px;
+  text-align: center;
+}
+
+
+
+
+@media only screen and (max-width: 1024px) {
+  .bullet_columns_inner {
+    column-count: 2;
+    column-gap: 5%;
+  }
+
+  .bullet_columns_block {
+    li {
+      padding-left: 2.2em;
+
+      .svg {
+        width: 1.5em;
+      }
+    }
+
+  }
+
+}
+
+
+@media only screen and (max-width: 767px) {
+  .bullet_columns_block {
+    h2 {
+      margin-bottom: 0.5em;
+    }
+
+    .bullets_intro_p {
+      margin-bottom: 2em;
+    }
+
+    .bullet_columns_inner {
+      column-count: 1 !important;
+    }
+  }
+
+}
+

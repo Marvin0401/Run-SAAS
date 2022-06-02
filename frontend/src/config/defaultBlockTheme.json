@@ -1,0 +1,353 @@
+[
+        {
+            "type": "BASIC_TEXT",
+            "theme": {}
+        },
+        {
+            "type": "BULLET_COLUMNS",
+            "theme": {}
+        },
+        {
+            "type": "DATA_DETAILS",
+            "theme": {}
+        },
+        {
+            "type": "DONATE",
+            "theme": {}
+        },
+        {
+            "type": "ENDORSEMENTS",
+            "theme": {
+                ".endorsements_block": {
+                    "background": "var(--white)"
+                },
+                ".endorser_photos_wrapper .bg_bar": {
+                    "background": "var(--yellow)"
+                },
+                ".endorser_list": {
+                    "background": "var(--blue)"
+                },
+                ".endorser_list h3.title": {
+                    "color": "var(--yellow)",
+                    "border-color": "var(--yellow)"
+                },
+                ".endorser_list ul li": {
+                    "border-color": "var(--teal)",
+                    "color": "var(--white)"
+                },
+                ".endorser_list ul li:before": {
+                    "color": "var(--teal)"
+                }
+            }
+        },
+        {
+            "type": "EVENTS_LIST",
+            "theme": {
+                ".events_page_list_block": {
+                    "background": "var(--white)"
+                },
+                ".events_item": {
+                    "background": "var(--teal)",
+                    "color": "var(--white)",
+                    "border-color": "var(--blue)"
+                },
+                ".event_date": {
+                    "color": "var(--blue)",
+                    "border-color": "var(--yellow)"
+                },
+                ".events_item .event_signup_btn": {
+                    "color": "var(--blue)",
+                    "background": "var(--white)"
+                }
+            }
+        },
+        {
+            "type": "EVENTS_PAGE",
+            "theme": {}
+        },
+        {
+            "type": "FULL_WIDTH_IMAGE",
+            "theme": {}
+        },
+        {
+            "type": "FULL_WIDTH_VIDEO",
+            "theme": {}
+        },
+        {
+            "type": "HERO",
+            "theme": {
+            "body": {
+                "color": "var(--white)"
+            },
+            ".blue nav.desktop .main_tabs.underlined .tab": {
+                "border-color": "var(--teal)",
+                "color": "var(--white)"
+            },
+           ".blue nav.desktop .main_tabs.underlined .tab:hover": {
+              "border-color": "var(--yellow)"
+           },
+            ".blue nav.desktop .featured_tab": {
+                "background": "var(--yellow)",
+                "color": "var(--blue)"
+            },
+            ".blue nav.desktop .featured_tab:hover": {
+                "background": "var(--teal)",
+                "color": "var(--white)"
+            },
+            ".blue .header_signup-bar input[type='submit']": {
+                "background": "var(--yellow)",
+                "color": "var(--blue)"
+            },
+            ".blue .header_signup-bar input[type='submit']:hover": {
+                "background": "var(--blue)",
+                "color": "var(--white)"
+            },
+            ".blue .header_signup-grid input[type='submit']":
+                {
+                "background": "var(--teal)",
+                "color": "var(--white)"
+            },
+            ".blue .header_signup-grid input[type='submit']:hover":
+                {
+                "background": "var(--yellow)",
+                "color": "var(--blue)"
+            },
+            ".blue .header_signup-bar input[type='text'], .blue .header_signup-bar input[type='email']":
+                {
+                "background": "var(--white)",
+                "color": "var(--blue)"
+            },
+            ".hero": {
+                "background-color": "var(--white)"
+            },
+            ".hero .header_content": {
+                "color": "var(--yellow)"
+            },
+            ".hero.bar_form .header_signup-bar": {
+                "background": "var(--teal)"
+            },
+            ".play_button": {
+                "background": "var(--teal)"
+            },
+            ".top_wrapper": {
+                "background": "var(--blue)"
+            }
+            }
+        },
+        {
+            "type": "INTRO",
+            "theme": {
+            ".intro_home_block": {
+                "background": "var(--white)"
+            },
+            ".intro_home_block h1": {
+                "color": "var(--blue)"
+            },
+            ".home_intro_text": {
+                "color": "var(--blue)"
+            }
+            }
+        },
+        {
+            "type": "ISSUES_LIST",
+            "theme": {
+                ".issues_page_block": {
+                    "background": "var(--white)"
+                },
+                ".issues_page_content_wrapper .side_menu": {
+                    "color": "var(--blue)"
+                },
+                ".issues_page_content_wrapper .side_menu_item": {
+                    "border-color": "var(--teal)"
+                },
+                ".issues_page_content_wrapper .side_menu_item a": {
+                    "color": "var(--blue)"
+                },
+                ".issues_item-page": {
+                    "background": "var(--teal)"
+                },
+                ".issues_item-page .graphic_wrapper:after, .issues_item-page .graphic_wrapper:before": {
+                    "background": "var(--blue)"
+                },
+                ".issues_item-page button": {
+                    "background": "var(--yellow)",
+                    "color": "var(--blue)"
+                },
+                ".issues_item_wrapper .eyebrow": {
+                    "color": "var(--blue)"
+                },
+                ".issues_item_wrapper h2": {
+                    "color": "var(--teal)"
+                }
+            }
+        },
+        {
+            "type": "ISSUES_PAGE",
+            "theme": {}
+        },
+        {
+            "type": "ISSUES",
+            "theme": {}
+        },
+        {
+            "type": "LANDING_POPUP",
+            "theme": {
+                ".donate_block": {
+                    "background": "var(--teal)",
+                    "color": "var(--white)"
+                },
+                ".donate_buttons .donation_amount": {
+                    "background": "var(--yellow)",
+                    "color": "var(--blue)"
+                },
+                ".donate_buttons .donation_amount:hover": {
+                    "background": "var(--blue)",
+                    "color": "var(--white)"
+                },
+                ".donate_buttons .donation_amount:last-child": {
+                    "background": "unset",
+                    "color": "var(--white)"
+                }
+                
+            }
+        },
+        {
+            "type": "LIFE_DETAILS",
+            "theme": {}
+        },
+        {
+            "type": "LONG_FORM",
+            "theme": {
+                ".long_form_block.color_block": {
+                    "background": "var(--yellow)",
+                    "color": "var(--blue)"
+                },
+                  ".long_form_block.color_block .eyebrow, .long_form_block.color_block .long_form_description b, .long_form_block.color_block h1": {
+                    "color": "var(--blue)"
+                },
+                ".long_form_block.color_block.column_background form.column": {
+                    "background": "var(--blue)",
+                    "color": "var(--white)"
+                },
+                ".long_form_block.color_block.column_background .second_column button": {
+                    "border-color": "var(--teal)",
+                    "color": "var(--white)"
+                }
+            }
+        },
+        {
+            "type": "NEWS_LIST",
+            "theme": {
+                 ".news_page_list_block": {
+                    "background": "var(--white)"
+                },
+                 ".news_page_list_block .news_item": {
+                    "background": "var(--blue)"
+                },
+                 ".news_page_list_block .news_item:hover": {
+                    "background": "var(--teal)",
+                    "border-color": "var(--yellow)",
+                    "color": "var(--white)"
+                },
+                 ".news_page_list_block .type_of_post": {
+                    "color": "var(--blue)"
+                },
+                 ".news_page_list_block .news_item:hover .type_of_post": {
+                    "color": "var(--yellow)"
+                },
+                 ".news_page_list_block .news_date_block": {
+                    "background": "var(--yellow)",
+                    "color": "var(--blue)"
+                },
+                ".news_page_list_block .news_item button:not(.react-datepicker__navigation)": {
+                    "background": "var(--yellow)"
+                },
+
+
+                ".news_page_item_block": {
+                    "background": "var(--white)"
+                },
+                ".news_page_item_block .side_menu": {
+                    "color": "var(--blue)"
+                },
+                ".news_page_item_block .side_menu_item": {
+                    "border-color": "var(--teal)"
+                },
+                ".news_page_item_block .type_of_post": {
+                    "color": "var(--teal)"
+                },
+                ".news_page_item_block .news_date_block": {
+                    "background": "var(--teal)",
+                    "color": "var(--white)"
+                },
+                ".news_date_block .day": {
+                    "color": "var(--blue)"
+                }
+            }
+        },
+        {
+            "type": "NEWS_PAGE",
+            "theme": {}
+        },
+        {
+            "type": "QUOTE_IMAGE",
+            "theme": {}
+        },
+        {
+            "type": "QUOTE",
+            "theme": {}
+        },
+        {
+            "type": "SHORT_FORM",
+            "theme": {
+                 ".short_form_block .form_section": {
+                    "background": "var(--yellow)"
+                },
+                 ".vol_sec_header": {
+                    "color": "var(--blue)"
+                },
+                 ".short_form_block button": {
+                    "color": "var(--blue)",
+                    "border-color": "var(--teal)"
+                }
+            }
+        },
+        {
+            "type": "TEXT_IMAGE",
+            "theme": {}
+        },
+        {
+            "type": "TEXT_WITH_SIDEBAR",
+            "theme": {}
+        },
+        {
+            "type": "TEXT",
+            "theme": {}
+        },
+        {
+            "type": "TIMELINE",
+            "theme": {}
+        },
+        {
+            "type": "TWITTER",
+            "theme": {
+                ".twitter_block": {
+                    "background": "var(--teal)",
+                    "color": "var(--blue)"
+                }
+            }
+        },
+        {
+            "type": "FOOTER",
+            "theme": {
+            "footer": {
+                "background-color": "var(--blue)",
+                "color": "var(--white)"
+            },
+            ".disclaimer": {
+                "color": "var(--white)",
+                "border-color": "var(--white)"
+            }
+            }
+        }
+]

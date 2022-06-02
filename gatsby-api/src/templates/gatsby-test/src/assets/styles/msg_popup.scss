@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/** THESE ARE ALL FOR CMS NOTIFICATIONS */
+
+.message_popup {
+  bottom: 0;
+  color: var(--white);
+  display: none;
+  font-size: 22px;
+  font-weight: 900;
+  margin: 5vw;
+  padding: 1em 2em;
+  padding-right: 4em;
+  position: fixed;
+  z-index: 10;
+
+  &.success {
+    background: var(--success_color);
+  }
+
+  &.error {
+    background: var(--error_color);
+    display: none;
+  }
+}
+
+.error_msg {
+  display: none;
+}
+
+// .success_msg {
+
+// }
+
+.message_close_button {
+  cursor: pointer;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+
+  .svg {
+    height: 1.5em;
+    width: 1.5em;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .message_popup {
+    font-size: 16px;
+    padding: 1em 1.5em;
+  }
+
+}

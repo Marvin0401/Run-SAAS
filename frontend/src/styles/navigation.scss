@@ -1,0 +1,348 @@
+@charset "UTF-8";
+
+/** ALL NAVIGATION */
+
+@mixin navigation($isMobile){
+	nav {
+	font-family: var(--button_font);
+	}
+
+
+	/** DESKTOP NAVIGATION */
+
+	nav.desktop {
+	display: flex;
+	justify-content: space-between;
+	padding-left: var(--menu_padding_horiz);
+	padding-right: var(--menu_padding_horiz);
+	padding-top: previewConverter(4, $isMobile);
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 14;
+
+	.featured_tab {
+		background: var(--yellow);
+		color: var(--blue);
+		display: inline-block;
+		font-weight: 900;
+		letter-spacing: 0.1em;
+		margin-left: 1em;
+		padding: 0.3em 0.8em;
+		text-transform: uppercase;
+			border-radius: 0.3em;
+
+		&:hover {
+		background: var(--blue);
+		color: var(--white);
+		}
+	}
+	}
+
+	.inner_page .desktop .featured_tab {
+	font-size: 110%;
+	}
+
+
+	.rounded .featured_tab {
+	border-radius: 0.3em;
+	}
+
+	.half_rounded .featured_tab {
+	border-radius: 0.5em 0;
+	}
+
+	/** MAIN TABS */
+
+	.main_tabs {
+	font-size: previewConverter(0.8, $isMobile); /** sets size of elements for this area */
+
+	.tab { /** general tab definitions */
+		display: inline-block;
+		font-weight: 800;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		vertical-align: top;
+		margin-right: 1.3em;
+		cursor: pointer;
+		
+		&:hover {
+		transform: translateY(#{previewConverter(-0.2, $isMobile)});
+
+		.dropdown_tabs {
+			opacity: 1;
+			pointer-events: all;
+		}
+		}
+	}
+
+	&.underlined .tab {
+		border-bottom: 3px solid;
+		border-radius: 0; /** overrides rounded edges when just an underline which looks odd */
+		margin-right: 2em;
+		padding-bottom: 0.3em;
+	}
+
+	&.boxed .tab {
+		margin-right: 1em;
+		padding: 0.3em 0.8em;
+	}
+	}
+
+	.dropdown_tabs {
+	background: var(--teal);
+	left: 0;
+	list-style-type: none;
+	opacity: 0;
+	padding: 0.6em 1.6em;
+	pointer-events: none;
+	position: absolute;
+	top: 3.5em;
+
+	li {
+		border-bottom: 1px solid;
+		border-bottom-color: var(--white);
+		margin-bottom: 1px;
+		padding: 0.8em 0;
+		white-space: nowrap;
+
+		&:hover {
+		color: var(--blue);
+		// background: var(--white);
+		// transform: translateX(.5em);
+		}
+
+		&:last-child {
+		border-bottom: 0;
+		}
+	}
+
+	&::before {
+		content: '';
+		height: 2em;
+		position: absolute;
+		top: -2em;
+		width: 100%;
+	}
+	}
+
+	.rounded {
+	.dropdown_tabs {
+		border-radius: 0.5em;
+	}
+
+	.tab {
+		border-radius: 0.2em;
+	}
+	}
+
+	.half_rounded {
+	.dropdown_tabs {
+		border-bottom-right-radius: 0.5em;
+		border-top-left-radius: 0.5em;
+	}
+
+	.tab {
+		border-radius: 0.2em;
+	}
+	}
+
+	/** RIGHT SIDE NAV WRAPPER */
+
+	.nav_wrapper_right {
+	display: flex;
+	font-size: previewConverter(1, $isMobile); /** this cascades to control the size of the entire social and featured button area */
+
+	.social_icons {
+		justify-content: right;
+	}
+	}
+
+
+	//MOBILE NAVIGATION
+
+
+	//controls fade in one by one of tabs
+	@for $i from 1 through 7 {
+		a:nth-child(#{$i}n) .tab.open {
+			transition-delay: #{$i * .035}s !important;
+		}
+	}
+
+	//mobile nav
+
+	nav.menu {
+		font-size: previewConverter(4, $isMobile);
+		position: fixed;
+		padding: previewConverter(10, $isMobile) previewConverter(15, $isMobile) previewConverter(10, $isMobile);
+		width: previewConverter(100, $isMobile);
+		height: 100%;
+		text-align: center;
+		font-weight: 900;
+		top: 0;
+		left: 0;
+		display: flex;
+		align-content: center;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: center;
+		overflow: hidden;
+		z-index: 15;
+		pointer-events: none;
+		box-sizing: border-box;
+		&.open {
+			overflow: auto;
+			overflow-x: hidden;
+			pointer-events: all;
+		}
+
+		&:before {
+			content:'';
+			background: var(--yellow);
+			position: fixed;
+			height: 200%;
+			width: 0;
+			left: 0;
+			top: 0;
+			transition: .2s;
+			overflow: hidden;
+			
+		}
+		
+		&.open:before {
+			width: previewConverter(100, $isMobile);
+		}
+		
+		a, button {
+			text-decoration: none;
+			color: var(--blue);
+			font-size: previewConverter(4, $isMobile);
+		}
+		
+		.tab {
+			opacity: 0;
+			margin-bottom: previewConverter(3, $isMobile);
+			transition-delay: 0s;
+			transition-duration: .1s;
+			display: block;
+			cursor: pointer;
+				
+			&:hover {
+				color: var(--blue);
+				transition: .3s;
+			}
+			
+			&.open {
+				opacity: 1;
+				transition-duration: .6s;
+			}
+		}
+		
+		.featured_tab {
+			background: var(--blue);
+			text-transform: uppercase;
+			font-weight: 900;
+			display: inline-block;
+			letter-spacing: .1em;
+			padding: .3em .6em;
+			margin-top: previewConverter(2, $isMobile);
+			color: var(--white);			
+			
+		}	
+			
+		.social_icons {
+			justify-content: center;
+			font-size: 80%;
+			margin-top: previewConverter(3.5, $isMobile);
+			opacity: 0;
+			transition-duration: .1s;
+			transition-delay: 0s;
+				
+			&.open {
+				opacity: 1;
+				transition-duration: .2s;
+				transition-delay: .2s;
+			}
+			
+			&.filled div:hover {
+				background: var(--blue);
+				
+				svg * {
+					fill: var(--white);
+				}
+			}
+
+		}
+
+	}
+}
+
+@include navigation(false);
+
+@mixin mobile_large_mav($isMobile) {
+	.main_tabs {
+		font-size: previewConverter(0.9, $isMobile);
+	}
+}
+@mixin mobile_small_mav($isMobile) {
+	nav.menu {
+		font-size: previewConverter(6, $isMobile);
+	  }
+}
+@mixin mobile_mid_mav {
+	.open_button {
+		display: block;
+	}
+
+	.nav_wrapper_right {
+		display: none;
+	}
+
+	.desktop .tab {
+		display: none;
+	}
+
+	//overriding styles from desktop version
+	.dropdown_tabs {
+		opacity: 1;
+		position: relative;
+		top: 0;
+		background: none;
+		font-size: 80%;
+		padding: 0;
+		pointer-events: auto;
+		margin-top: .5em;
+		
+		li {
+			border: none;
+			padding: 0;
+			margin-bottom: .4em;
+			font-weight: 400;
+		}
+	}
+}
+
+.cms .mobile_view {
+	@include navigation(true);
+	@include mobile_large_mav(true);
+	@include mobile_mid_mav;
+	@include mobile_small_mav(true);
+	nav.desktop {
+		display: none;
+	}
+	nav.menu, nav.menu::before {
+		left: calc((100% - #{previewConverter(100, true)}) / 2);
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	@include mobile_large_mav(false);
+}
+
+@media screen and (max-width: 1024px) {
+	@include mobile_mid_mav;
+}
+
+@media screen and (max-width: 767px) {
+	@include mobile_small_mav(true);
+}
